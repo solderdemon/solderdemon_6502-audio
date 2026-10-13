@@ -1,0 +1,5 @@
+al 001013 .psg_init
+al 00102B .psg_silence
+al 001041 .psg_test_chord
+al 001004 .psg_write
+al 001000 .start

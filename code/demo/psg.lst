@@ -1,0 +1,97 @@
+ca65 V2.18 - N/A
+Main file   : psg.s
+Current file: psg.s
+
+000000r 1               .setcpu "65C02"
+000000r 1               .export psg_init, psg_write, psg_silence, psg_test_chord
+000000r 1               
+000000r 1               ; SolderDemon 6502 Audio r1: the YM2149F behind a hardware sequencer (U3).
+000000r 1               ; A store to PSG_REG latches a register number, a store to PSG_DATA writes
+000000r 1               ; that register. The card holds the CPU with RDY for ~4 us per store and
+000000r 1               ; times the PSG strobe itself: no delays, any CPU clock. Both repeat over
+000000r 1               ; $C100-$C1FF (A0 picks one); reads of the page do nothing.
+000000r 1               PSG_REG  = $C100
+000000r 1               PSG_DATA = $C101
+000000r 1               
+000000r 1               .segment "CODE"
+000000r 1               ; A = value, X = register 0..13 (14/15 are the PSG's I/O ports).
+000000r 1               ; Preserves A, X, Y and the flags. The register number is masked to 0..15:
+000000r 1               ; a number with a bit set in 4..7 would not address this chip at all.
+000000r 1               ; IRQs are off between the two stores, so an IRQ handler that uses the PSG
+000000r 1               ; cannot slip its own register number in between.
+000000r 1               .proc psg_write
+000000r 1  08               php
+000001r 1  78               sei
+000002r 1  48               pha
+000003r 1  8A               txa
+000004r 1  29 0F            and #$0F
+000006r 1  8D 00 C1         sta PSG_REG
+000009r 1  68               pla
+00000Ar 1  8D 01 C1         sta PSG_DATA
+00000Dr 1  28               plp
+00000Er 1  60               rts
+00000Fr 1               .endproc
+00000Fr 1               
+00000Fr 1               ; All registers 13..0 to zero, then tones and noise off with the I/O ports
+00000Fr 1               ; as inputs (R7 = $3F). /RESET has already done the same in hardware.
+00000Fr 1               .proc psg_init
+00000Fr 1  08               php
+000010r 1  48               pha
+000011r 1  DA               phx
+000012r 1  A2 0D            ldx #13
+000014r 1  A9 00            lda #0
+000016r 1               clear:
+000016r 1  20 rr rr         jsr psg_write
+000019r 1  CA               dex
+00001Ar 1  10 FA            bpl clear
+00001Cr 1  A2 07            ldx #7
+00001Er 1  A9 3F            lda #$3F
+000020r 1  20 rr rr         jsr psg_write
+000023r 1  FA               plx
+000024r 1  68               pla
+000025r 1  28               plp
+000026r 1  60               rts
+000027r 1               .endproc
+000027r 1               
+000027r 1               .proc psg_silence
+000027r 1  08               php
+000028r 1  48               pha
+000029r 1  DA               phx
+00002Ar 1  A2 08            ldx #8
+00002Cr 1  A9 00            lda #0
+00002Er 1  20 rr rr         jsr psg_write
+000031r 1  E8               inx
+000032r 1  20 rr rr         jsr psg_write
+000035r 1  E8               inx
+000036r 1  20 rr rr         jsr psg_write
+000039r 1  FA               plx
+00003Ar 1  68               pla
+00003Br 1  28               plp
+00003Cr 1  60               rts
+00003Dr 1               .endproc
+00003Dr 1               
+00003Dr 1               ; C4-E4-G4 chord. X1 is 1.8432 MHz: f = 1843200 / (16 * period) = 115200 / period.
+00003Dr 1               ; A left / B centre / C right. Returns with the chord still sounding.
+00003Dr 1               .proc psg_test_chord
+00003Dr 1  20 rr rr         jsr psg_init
+000040r 1  08               php
+000041r 1  48               pha
+000042r 1  DA               phx
+000043r 1  A2 00            ldx #0
+000045r 1               next:
+000045r 1  BD rr rr         lda chord,x
+000048r 1  20 rr rr         jsr psg_write
+00004Br 1  E8               inx
+00004Cr 1  E0 0E            cpx #14
+00004Er 1  D0 F5            bne next
+000050r 1  FA               plx
+000051r 1  68               pla
+000052r 1  28               plp
+000053r 1  60               rts
+000054r 1               chord:
+000054r 1  B8 01 5D 01      .byte $B8,$01, $5D,$01, $26,$01, $00,$38
+000058r 1  26 01 00 38  
+00005Cr 1  0A 0A 0A 00      .byte $0A,$0A,$0A, $00,$00,$00
+000060r 1  00 00        
+000062r 1               .endproc
+000062r 1               

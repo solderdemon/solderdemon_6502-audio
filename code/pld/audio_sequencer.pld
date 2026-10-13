@@ -1,0 +1,55 @@
+GAL22V10
+AUDIO65
+
+CLK PHI2 RW RESET A8 A9 A10 A11 A12 A13 A14 GND
+A15 EN NC NREQ Q0 Q1 Q2 DONE BDIR CAPTURE RDY VCC
+
+/NREQ = A15 * A14 * /A13 * /A12 * /A11 * /A10 * /A9 * A8 * /RW * RESET
+AR = NREQ
+
+Q0.R = /Q2 * /Q1 * /Q0 * PHI2
+     + /Q2 * /Q1 * Q0
+     + Q2 * Q1
+Q1.R = /Q2 * Q0
+     + Q1 * /Q0
+Q2.R = Q2
+     + Q1 * /Q0
+BDIR.R = Q1 * /Q0
+DONE.R = Q2 * /Q1
+
+/CAPTURE = PHI2 * A15 * A14 * /A13 * /A12 * /A11 * /A10 * /A9 * A8 * /RW * RESET * /Q2 * /Q1
+         + PHI2 * A15 * A14 * /A13 * /A12 * /A11 * /A10 * /A9 * A8 * /RW * RESET * /Q2 * Q0
+
+EN = A15 * A14 * /A13 * /A12 * /A11 * /A10 * /A9 * A8 * /RW * RESET * PHI2
+   + A15 * A14 * /A13 * /A12 * /A11 * /A10 * /A9 * A8 * /RW * RESET * Q0
+   + A15 * A14 * /A13 * /A12 * /A11 * /A10 * /A9 * A8 * /RW * RESET * Q1
+   + A15 * A14 * /A13 * /A12 * /A11 * /A10 * /A9 * A8 * /RW * RESET * Q2
+
+RDY.T = DONE
+RDY.E = EN
+
+DESCRIPTION
+SolderDemon 6502 Audio r1, U3: hardware-timed YM2149F write interface,
+the 6502 counterpart of the SolderDemon m68k Audio sequencer. Program as
+ATF22V10C-7PX (7.5 ns); disable the power-down option.
+
+A CPU write to C100-C1FF (A0-A7 not decoded here; A0 drives BC2 directly,
+BC1 is grounded) is a request. RDY goes low in PHI2 high, so the W65C02S holds
+the write cycle and repeats it until the card lets go. U2 (74HCT273)
+latches D0-D7 on every rising CAPTURE, i.e. at every PHI2 fall of the
+held cycle, until the counter reaches state 3.
+
+Q2:Q0 count CLK (1.8432 MHz, the PSG clock) in Gray code
+000 001 011 010 110 111 101 100 and stay at 100. They leave 000 only on
+an edge that sees PHI2 high, so the first write cycle has driven its data
+before the window closes, at any CPU clock. States 4-5 hold BDIR high for
+two clocks (1.09 us); state 7 raises DONE one clock after BDIR has fallen,
+and RDY is then driven high (the host pull-up is 3k3, too slow on its own)
+until the CPU leaves the address and RDY is released. NREQ resets
+everything between requests through the single-product AR term.
+
+RDY is shared, so U3 drives it only through EN (pin 14, otherwise unused):
+during PHI2 high of a card write, and from the first counted clock on until
+the CPU moves away. The address bus settles while PHI2 is low, and a decode
+glitch there never reaches RDY. EN is a pin of its own because the output
+enable of a 22V10 is a single product.

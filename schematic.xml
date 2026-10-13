@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>solderdemon_6502-audio.kicad_sch</source>
+    <date>2026-10-13T21:40:28</date>
+    <tool>Eeschema 10.0.1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>SolderDemon 6502 Audio / YM2149F, hardware-timed (ATF22V10C + 74HCT273)</title>
+        <company/>
+        <rev>r1</rev>
+        <date>2026-10-13</date>
+        <source>solderdemon_6502-audio.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>100nF</value>
+      <footprint>Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e58a5318-db44-5d0c-a0f4-6d9127202123</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C2">
+      <value>100nF</value>
+      <footprint>Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>93ec2115-7c41-5632-a11d-e8dfeaa6710b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C3">
+      <value>100nF</value>
+      <footprint>Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>31fb9900-392c-5dc3-bdd9-39ee4ad4451e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C4">
+      <value>100nF</value>
+      <footprint>Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0993f229-6523-59b4-a968-6efdbe547254</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C5">
+      <value>47uF 16V</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C_Polarized" description="Polarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="CP_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>78cfa8cb-4c59-5061-abeb-001d28b5572f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C6">
+      <value>10uF 16V</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C_Polarized" description="Polarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="CP_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>29fac035-a869-5629-a7f1-1f1b68ca9b5b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C7">
+      <value>10uF 16V</value>
+      <footprint>Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_THT:CP_Radial_D6.3mm_P2.50mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C_Polarized" description="Polarized capacitor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="CP_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4bb9b4bf-590b-5418-aabf-2d2ec5938a92</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J1">
+      <value>SYSTEM BUS</value>
+      <footprint>SolderDemonAudio:PinSocket_2x18_P2.54mm_Horizontal_EdgeMount</footprint>
+      <fields>
+        <field name="Footprint">SolderDemonAudio:PinSocket_2x18_P2.54mm_Horizontal_EdgeMount</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="SolderDemonAudio" part="BUS_2x18" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>087571de-97fa-5b06-b85d-9a5ad2f6a6fa</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="5"/>
+            <pin num="7"/>
+            <pin num="9"/>
+            <pin num="11"/>
+            <pin num="13"/>
+            <pin num="15"/>
+            <pin num="17"/>
+            <pin num="19"/>
+            <pin num="21"/>
+            <pin num="23"/>
+            <pin num="25"/>
+            <pin num="27"/>
+            <pin num="29"/>
+            <pin num="31"/>
+            <pin num="33"/>
+            <pin num="35"/>
+            <pin num="2"/>
+            <pin num="4"/>
+            <pin num="6"/>
+            <pin num="8"/>
+            <pin num="10"/>
+            <pin num="12"/>
+            <pin num="14"/>
+            <pin num="16"/>
+            <pin num="18"/>
+            <pin num="20"/>
+            <pin num="22"/>
+            <pin num="24"/>
+            <pin num="26"/>
+            <pin num="28"/>
+            <pin num="30"/>
+            <pin num="32"/>
+            <pin num="34"/>
+            <pin num="36"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J2">
+      <value>PJ-307 LINE OUT</value>
+      <footprint>SolderDemonAudio:Jack_3.5mm_HOOYA_PJ-307_Horizontal_EdgeMount</footprint>
+      <fields>
+        <field name="Footprint">SolderDemonAudio:Jack_3.5mm_HOOYA_PJ-307_Horizontal_EdgeMount</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector_Audio" part="AudioJack3_SwitchTR" description="Audio Jack, 3 Poles (Stereo / TRS), Switched TR Poles (Normalling)"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones phones TRS connector"/>
+      <property name="ki_fp_filters" value="Jack*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3e30d7c9-c158-5632-a137-d0d885345f00</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="S"/>
+            <pin num="R"/>
+            <pin num="RN"/>
+            <pin num="T"/>
+            <pin num="TN"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J3">
+      <value>L / GND / R</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="Footprint">Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector_Generic" part="Conn_01x03" description="Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="connector"/>
+      <property name="ki_fp_filters" value="Connector*:*_1x??_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e770bc9d-4e3a-53e9-9211-716f0e080931</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>33</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a6bbcbbb-bf12-5829-b4f4-809f1df7b5ad</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>33</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>dea5078c-2e37-5a4e-b2a8-f5f1a0f02270</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R3">
+      <value>10k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>836e211a-dd76-5ddf-9ebd-e0a8fe2e7712</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R4">
+      <value>10k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f50bcc12-d3bc-5e5a-b79a-2f2566fdf311</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R5">
+      <value>1k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0dc8e681-9294-5386-8872-0b6387aebb11</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R6">
+      <value>1k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7adafc55-545b-5e41-9f3f-4c4dc351bb7e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R7">
+      <value>1k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5e18c7e1-8ddf-5c46-a11f-f8eb045ea400</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R8">
+      <value>10k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6c42404a-b81f-51cc-af30-23f286eae20a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R9">
+      <value>22k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>78029898-bb20-5cee-a5e6-25c801ab54fb</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R10">
+      <value>22k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>24c254d7-1de0-5d8f-a57a-043d44a56930</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R11">
+      <value>10k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>80ddbc73-2d7f-58f5-a827-ff74ecfdfa32</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R12">
+      <value>100k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>df60c127-b8c2-5528-9cec-4a142f70f8f0</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R13">
+      <value>100k</value>
+      <footprint>Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</footprint>
+      <fields>
+        <field name="Footprint">Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>bed2c0ec-96d4-5bc2-8e64-e2d909bd65c3</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U1">
+      <value>YM2149F</value>
+      <footprint>Package_DIP:DIP-40_W15.24mm_Socket_LongPads</footprint>
+      <fields>
+        <field name="Footprint">Package_DIP:DIP-40_W15.24mm_Socket_LongPads</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Audio" part="YM2149" description="Software-Controlled Sound Generator, DIP-40"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="audio ssg 3ch"/>
+      <property name="ki_fp_filters" value="DIP*W15.24mm*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1892c378-36a0-5dbb-88de-ba24b76c4e13</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="37"/>
+            <pin num="36"/>
+            <pin num="35"/>
+            <pin num="34"/>
+            <pin num="33"/>
+            <pin num="32"/>
+            <pin num="31"/>
+            <pin num="30"/>
+            <pin num="25"/>
+            <pin num="24"/>
+            <pin num="27"/>
+            <pin num="29"/>
+            <pin num="28"/>
+            <pin num="22"/>
+            <pin num="26"/>
+            <pin num="23"/>
+            <pin num="39"/>
+            <pin num="2"/>
+            <pin num="5"/>
+            <pin num="40"/>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="38"/>
+            <pin num="21"/>
+            <pin num="20"/>
+            <pin num="19"/>
+            <pin num="18"/>
+            <pin num="17"/>
+            <pin num="16"/>
+            <pin num="15"/>
+            <pin num="14"/>
+            <pin num="13"/>
+            <pin num="12"/>
+            <pin num="11"/>
+            <pin num="10"/>
+            <pin num="9"/>
+            <pin num="8"/>
+            <pin num="7"/>
+            <pin num="6"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U2">
+      <value>74HCT273</value>
+      <footprint>Package_DIP:DIP-20_W7.62mm_Socket_LongPads</footprint>
+      <fields>
+        <field name="Footprint">Package_DIP:DIP-20_W7.62mm_Socket_LongPads</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="74xx" part="74HCT273" description="8-bit D Flip-Flop, reset"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="HCTMOS DFF DFF8"/>
+      <property name="ki_fp_filters" value="DIP?20* SO?20* SOIC?20*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>afc05490-1fa4-5ebc-af8f-3906879de7e5</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="13"/>
+            <pin num="14"/>
+            <pin num="17"/>
+            <pin num="18"/>
+            <pin num="11"/>
+            <pin num="1"/>
+            <pin num="20"/>
+            <pin num="10"/>
+            <pin num="2"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="9"/>
+            <pin num="12"/>
+            <pin num="15"/>
+            <pin num="16"/>
+            <pin num="19"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U3">
+      <value>ATF22V10C-7PX</value>
+      <footprint>Package_DIP:DIP-24_W7.62mm_Socket_LongPads</footprint>
+      <fields>
+        <field name="Footprint">Package_DIP:DIP-24_W7.62mm_Socket_LongPads</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="SolderDemonAudio" part="ATF22V10C_AUDIO65" description=""/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5ff0e5dc-0194-5b30-89eb-a106b806f048</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="11"/>
+            <pin num="12"/>
+            <pin num="24"/>
+            <pin num="23"/>
+            <pin num="22"/>
+            <pin num="21"/>
+            <pin num="20"/>
+            <pin num="19"/>
+            <pin num="18"/>
+            <pin num="17"/>
+            <pin num="16"/>
+            <pin num="15"/>
+            <pin num="14"/>
+            <pin num="13"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="X1">
+      <value>1.8432MHz</value>
+      <footprint>Oscillator:Oscillator_DIP-8</footprint>
+      <fields>
+        <field name="Footprint">Oscillator:Oscillator_DIP-8</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Oscillator" part="CXO_DIP8" description="Crystal Clock Oscillator, DIP8-style metal package"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="solderdemon_6502-audio.kicad_sch"/>
+      <property name="ki_keywords" value="Crystal Clock Oscillator"/>
+      <property name="ki_fp_filters" value="Oscillator*DIP*8*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c170a623-4455-5550-8532-a1d0bdf8895e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="8"/>
+            <pin num="4"/>
+            <pin num="5"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="74xx" part="74HCT273">
+      <description>8-bit D Flip-Flop, reset</description>
+      <docs>https://assets.nexperia.com/documents/data-sheet/74HC_HCT273.pdf</docs>
+      <footprints>
+        <fp>DIP?20*</fp>
+        <fp>SO?20*</fp>
+        <fp>SOIC?20*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">74HCT273</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">https://assets.nexperia.com/documents/data-sheet/74HC_HCT273.pdf</field>
+        <field name="Description">8-bit D Flip-Flop, reset</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~{Mr}" type="input"/>
+        <pin num="2" name="Q0" type="output"/>
+        <pin num="3" name="D0" type="input"/>
+        <pin num="4" name="D1" type="input"/>
+        <pin num="5" name="Q1" type="output"/>
+        <pin num="6" name="Q2" type="output"/>
+        <pin num="7" name="D2" type="input"/>
+        <pin num="8" name="D3" type="input"/>
+        <pin num="9" name="Q3" type="output"/>
+        <pin num="10" name="GND" type="power_in"/>
+        <pin num="11" name="Cp" type="input"/>
+        <pin num="12" name="Q4" type="output"/>
+        <pin num="13" name="D4" type="input"/>
+        <pin num="14" name="D5" type="input"/>
+        <pin num="15" name="Q5" type="output"/>
+        <pin num="16" name="Q6" type="output"/>
+        <pin num="17" name="D6" type="input"/>
+        <pin num="18" name="D7" type="input"/>
+        <pin num="19" name="Q7" type="output"/>
+        <pin num="20" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Audio" part="YM2149">
+      <description>Software-Controlled Sound Generator, DIP-40</description>
+      <docs>http://www.ym2149.com/ym2149.pdf</docs>
+      <footprints>
+        <fp>DIP*W15.24mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">YM2149</field>
+        <field name="Footprint">Package_DIP:DIP-40_W15.24mm</field>
+        <field name="Datasheet">http://www.ym2149.com/ym2149.pdf</field>
+        <field name="Description">Software-Controlled Sound Generator, DIP-40</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VSS" type="power_in"/>
+        <pin num="2" name="NC" type="no_connect"/>
+        <pin num="3" name="A" type="output"/>
+        <pin num="4" name="B" type="output"/>
+        <pin num="5" name="NC" type="no_connect"/>
+        <pin num="6" name="IOB7" type="bidirectional"/>
+        <pin num="7" name="IOB6" type="bidirectional"/>
+        <pin num="8" name="IOB5" type="bidirectional"/>
+        <pin num="9" name="IOB4" type="bidirectional"/>
+        <pin num="10" name="IOB3" type="bidirectional"/>
+        <pin num="11" name="IOB2" type="bidirectional"/>
+        <pin num="12" name="IOB1" type="bidirectional"/>
+        <pin num="13" name="IOB0" type="bidirectional"/>
+        <pin num="14" name="IOA7" type="bidirectional"/>
+        <pin num="15" name="IOA6" type="bidirectional"/>
+        <pin num="16" name="IOA5" type="bidirectional"/>
+        <pin num="17" name="IOA4" type="bidirectional"/>
+        <pin num="18" name="IOA3" type="bidirectional"/>
+        <pin num="19" name="IOA2" type="bidirectional"/>
+        <pin num="20" name="IOA1" type="bidirectional"/>
+        <pin num="21" name="IOA0" type="bidirectional"/>
+        <pin num="22" name="CLOCK" type="input"/>
+        <pin num="23" name="~{RESET}" type="input"/>
+        <pin num="24" name="~{A9}" type="input"/>
+        <pin num="25" name="A8" type="input"/>
+        <pin num="26" name="~{SEL}" type="input"/>
+        <pin num="27" name="BDIR" type="input"/>
+        <pin num="28" name="BC2" type="input"/>
+        <pin num="29" name="BC1" type="input"/>
+        <pin num="30" name="DA7" type="bidirectional"/>
+        <pin num="31" name="DA6" type="bidirectional"/>
+        <pin num="32" name="DA5" type="bidirectional"/>
+        <pin num="33" name="DA4" type="bidirectional"/>
+        <pin num="34" name="DA3" type="bidirectional"/>
+        <pin num="35" name="DA2" type="bidirectional"/>
+        <pin num="36" name="DA1" type="bidirectional"/>
+        <pin num="37" name="DA0" type="bidirectional"/>
+        <pin num="38" name="C" type="output"/>
+        <pin num="39" name="TEST1" type="passive"/>
+        <pin num="40" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Audio" part="AudioJack3_SwitchTR">
+      <description>Audio Jack, 3 Poles (Stereo / TRS), Switched TR Poles (Normalling)</description>
+      <footprints>
+        <fp>Jack*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">AudioJack3_SwitchTR</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Audio Jack, 3 Poles (Stereo / TRS), Switched TR Poles (Normalling)</field>
+      </fields>
+      <pins>
+        <pin num="R" name="" type="passive"/>
+        <pin num="RN" name="" type="passive"/>
+        <pin num="S" name="" type="passive"/>
+        <pin num="T" name="" type="passive"/>
+        <pin num="TN" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_01x03">
+      <description>Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x03</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C_Polarized">
+      <description>Polarized capacitor</description>
+      <footprints>
+        <fp>CP_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C_Polarized</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Polarized capacitor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Oscillator" part="CXO_DIP8">
+      <description>Crystal Clock Oscillator, DIP8-style metal package</description>
+      <docs>http://cdn-reichelt.de/documents/datenblatt/B400/OSZI.pdf</docs>
+      <footprints>
+        <fp>Oscillator*DIP*8*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">Y</field>
+        <field name="Value">CXO_DIP8</field>
+        <field name="Footprint">Oscillator:Oscillator_DIP-8</field>
+        <field name="Datasheet">http://cdn-reichelt.de/documents/datenblatt/B400/OSZI.pdf</field>
+        <field name="Description">Crystal Clock Oscillator, DIP8-style metal package</field>
+      </fields>
+      <pins>
+        <pin num="1" name="EN" type="input"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="OUT" type="output"/>
+        <pin num="8" name="Vcc" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="SolderDemonAudio" part="ATF22V10C_AUDIO65">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ATF22V10C_AUDIO65</field>
+        <field name="Footprint">Package_DIP:DIP-24_W7.62mm_Socket_LongPads</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="CLK" type="input"/>
+        <pin num="2" name="PHI2" type="input"/>
+        <pin num="3" name="RW" type="input"/>
+        <pin num="4" name="RESET" type="input"/>
+        <pin num="5" name="A8" type="input"/>
+        <pin num="6" name="A9" type="input"/>
+        <pin num="7" name="A10" type="input"/>
+        <pin num="8" name="A11" type="input"/>
+        <pin num="9" name="A12" type="input"/>
+        <pin num="10" name="A13" type="input"/>
+        <pin num="11" name="A14" type="input"/>
+        <pin num="12" name="GND" type="power_in"/>
+        <pin num="13" name="A15" type="input"/>
+        <pin num="14" name="EN" type="output"/>
+        <pin num="15" name="NC15" type="no_connect"/>
+        <pin num="16" name="NREQ" type="output"/>
+        <pin num="17" name="Q0" type="output"/>
+        <pin num="18" name="Q1" type="output"/>
+        <pin num="19" name="Q2" type="output"/>
+        <pin num="20" name="DONE" type="output"/>
+        <pin num="21" name="BDIR" type="output"/>
+        <pin num="22" name="CAPTURE" type="output"/>
+        <pin num="23" name="RDY" type="tri_state"/>
+        <pin num="24" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="SolderDemonAudio" part="BUS_2x18">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">BUS_2x18</field>
+        <field name="Footprint">SolderDemonAudio:PinSocket_2x18_P2.54mm_Horizontal_EdgeMount</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="A0" type="passive"/>
+        <pin num="2" name="+5V" type="passive"/>
+        <pin num="3" name="A1" type="passive"/>
+        <pin num="4" name="PHI2" type="passive"/>
+        <pin num="5" name="A2" type="passive"/>
+        <pin num="6" name="GND" type="passive"/>
+        <pin num="7" name="A3" type="passive"/>
+        <pin num="8" name="RWB" type="passive"/>
+        <pin num="9" name="A4" type="passive"/>
+        <pin num="10" name="~{RESET}" type="passive"/>
+        <pin num="11" name="A5" type="passive"/>
+        <pin num="12" name="RDY" type="passive"/>
+        <pin num="13" name="A6" type="passive"/>
+        <pin num="14" name="~{NMI}" type="passive"/>
+        <pin num="15" name="A7" type="passive"/>
+        <pin num="16" name="~{IRQ}" type="passive"/>
+        <pin num="17" name="A8" type="passive"/>
+        <pin num="18" name="SYNC" type="passive"/>
+        <pin num="19" name="A9" type="passive"/>
+        <pin num="20" name="BE" type="passive"/>
+        <pin num="21" name="A10" type="passive"/>
+        <pin num="22" name="D7" type="passive"/>
+        <pin num="23" name="A11" type="passive"/>
+        <pin num="24" name="D6" type="passive"/>
+        <pin num="25" name="A12" type="passive"/>
+        <pin num="26" name="D5" type="passive"/>
+        <pin num="27" name="A13" type="passive"/>
+        <pin num="28" name="D4" type="passive"/>
+        <pin num="29" name="A14" type="passive"/>
+        <pin num="30" name="D3" type="passive"/>
+        <pin num="31" name="A15" type="passive"/>
+        <pin num="32" name="D2" type="passive"/>
+        <pin num="33" name="~{VP}" type="passive"/>
+        <pin num="34" name="D1" type="passive"/>
+        <pin num="35" name="~{ML}" type="passive"/>
+        <pin num="36" name="D0" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="74xx">
+      <uri>${KICAD10_SYMBOL_DIR}/74xx.kicad_sym</uri>
+    </library>
+    <library logical="Audio">
+      <uri>${KICAD10_SYMBOL_DIR}/Audio.kicad_sym</uri>
+    </library>
+    <library logical="Connector_Audio">
+      <uri>${KICAD10_SYMBOL_DIR}/Connector_Audio.kicad_sym</uri>
+    </library>
+    <library logical="Connector_Generic">
+      <uri>${KICAD10_SYMBOL_DIR}/Connector_Generic.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>${KICAD10_SYMBOL_DIR}/Device.kicad_sym</uri>
+    </library>
+    <library logical="Oscillator">
+      <uri>${KICAD10_SYMBOL_DIR}/Oscillator.kicad_sym</uri>
+    </library>
+    <library logical="SolderDemonAudio">
+      <uri>${KIPRJMOD}/SolderDemonAudio.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/+5V" class="Default">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="C4" pin="1" pintype="passive"/>
+      <node ref="C5" pin="1" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="+5V_2" pintype="passive"/>
+      <node ref="U1" pin="25" pinfunction="A8_25" pintype="input"/>
+      <node ref="U1" pin="26" pinfunction="~{SEL}_26" pintype="input"/>
+      <node ref="U1" pin="40" pinfunction="VCC_40" pintype="power_in"/>
+      <node ref="U2" pin="20" pinfunction="VCC_20" pintype="power_in"/>
+      <node ref="U3" pin="24" pinfunction="VCC_24" pintype="power_in"/>
+      <node ref="X1" pin="1" pinfunction="EN_1" pintype="input"/>
+      <node ref="X1" pin="8" pinfunction="Vcc_8" pintype="power_in"/>
+    </net>
+    <net code="2" name="/A0" class="Default">
+      <node ref="J1" pin="1" pinfunction="A0_1" pintype="passive"/>
+      <node ref="U1" pin="28" pinfunction="BC2_28" pintype="input"/>
+    </net>
+    <net code="3" name="/A8" class="Default">
+      <node ref="J1" pin="17" pinfunction="A8_17" pintype="passive"/>
+      <node ref="U3" pin="5" pinfunction="A8_5" pintype="input"/>
+    </net>
+    <net code="4" name="/A9" class="Default">
+      <node ref="J1" pin="19" pinfunction="A9_19" pintype="passive"/>
+      <node ref="U3" pin="6" pinfunction="A9_6" pintype="input"/>
+    </net>
+    <net code="5" name="/A10" class="Default">
+      <node ref="J1" pin="21" pinfunction="A10_21" pintype="passive"/>
+      <node ref="U3" pin="7" pinfunction="A10_7" pintype="input"/>
+    </net>
+    <net code="6" name="/A11" class="Default">
+      <node ref="J1" pin="23" pinfunction="A11_23" pintype="passive"/>
+      <node ref="U3" pin="8" pinfunction="A11_8" pintype="input"/>
+    </net>
+    <net code="7" name="/A12" class="Default">
+      <node ref="J1" pin="25" pinfunction="A12_25" pintype="passive"/>
+      <node ref="U3" pin="9" pinfunction="A12_9" pintype="input"/>
+    </net>
+    <net code="8" name="/A13" class="Default">
+      <node ref="J1" pin="27" pinfunction="A13_27" pintype="passive"/>
+      <node ref="U3" pin="10" pinfunction="A13_10" pintype="input"/>
+    </net>
+    <net code="9" name="/A14" class="Default">
+      <node ref="J1" pin="29" pinfunction="A14_29" pintype="passive"/>
+      <node ref="U3" pin="11" pinfunction="A14_11" pintype="input"/>
+    </net>
+    <net code="10" name="/A15" class="Default">
+      <node ref="J1" pin="31" pinfunction="A15_31" pintype="passive"/>
+      <node ref="U3" pin="13" pinfunction="A15_13" pintype="input"/>
+    </net>
+    <net code="11" name="/BDIR" class="Default">
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="U1" pin="27" pinfunction="BDIR_27" pintype="input"/>
+      <node ref="U3" pin="21" pinfunction="BDIR_21" pintype="output"/>
+    </net>
+    <net code="12" name="/CAPTURE" class="Default">
+      <node ref="R4" pin="1" pintype="passive"/>
+      <node ref="U2" pin="11" pinfunction="Cp_11" pintype="input"/>
+      <node ref="U3" pin="22" pinfunction="CAPTURE_22" pintype="output"/>
+    </net>
+    <net code="13" name="/CH_A" class="Default">
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="R8" pin="1" pintype="passive"/>
+      <node ref="U1" pin="3" pinfunction="A_3" pintype="output"/>
+    </net>
+    <net code="14" name="/CH_B" class="Default">
+      <node ref="R10" pin="1" pintype="passive"/>
+      <node ref="R6" pin="1" pintype="passive"/>
+      <node ref="R9" pin="1" pintype="passive"/>
+      <node ref="U1" pin="4" pinfunction="B_4" pintype="output"/>
+    </net>
+    <net code="15" name="/CH_C" class="Default">
+      <node ref="R11" pin="1" pintype="passive"/>
+      <node ref="R7" pin="1" pintype="passive"/>
+      <node ref="U1" pin="38" pinfunction="C_38" pintype="output"/>
+    </net>
+    <net code="16" name="/CLK_RAW" class="Default">
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="X1" pin="5" pinfunction="OUT_5" pintype="output"/>
+    </net>
+    <net code="17" name="/D0" class="Default">
+      <node ref="J1" pin="36" pinfunction="D0_36" pintype="passive"/>
+      <node ref="U2" pin="3" pinfunction="D0_3" pintype="input"/>
+    </net>
+    <net code="18" name="/D1" class="Default">
+      <node ref="J1" pin="34" pinfunction="D1_34" pintype="passive"/>
+      <node ref="U2" pin="4" pinfunction="D1_4" pintype="input"/>
+    </net>
+    <net code="19" name="/D2" class="Default">
+      <node ref="J1" pin="32" pinfunction="D2_32" pintype="passive"/>
+      <node ref="U2" pin="7" pinfunction="D2_7" pintype="input"/>
+    </net>
+    <net code="20" name="/D3" class="Default">
+      <node ref="J1" pin="30" pinfunction="D3_30" pintype="passive"/>
+      <node ref="U2" pin="8" pinfunction="D3_8" pintype="input"/>
+    </net>
+    <net code="21" name="/D4" class="Default">
+      <node ref="J1" pin="28" pinfunction="D4_28" pintype="passive"/>
+      <node ref="U2" pin="13" pinfunction="D4_13" pintype="input"/>
+    </net>
+    <net code="22" name="/D5" class="Default">
+      <node ref="J1" pin="26" pinfunction="D5_26" pintype="passive"/>
+      <node ref="U2" pin="14" pinfunction="D5_14" pintype="input"/>
+    </net>
+    <net code="23" name="/D6" class="Default">
+      <node ref="J1" pin="24" pinfunction="D6_24" pintype="passive"/>
+      <node ref="U2" pin="17" pinfunction="D6_17" pintype="input"/>
+    </net>
+    <net code="24" name="/D7" class="Default">
+      <node ref="J1" pin="22" pinfunction="D7_22" pintype="passive"/>
+      <node ref="U2" pin="18" pinfunction="D7_18" pintype="input"/>
+    </net>
+    <net code="25" name="/GND" class="Default">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="C4" pin="2" pintype="passive"/>
+      <node ref="C5" pin="2" pintype="passive"/>
+      <node ref="J1" pin="6" pinfunction="GND_6" pintype="passive"/>
+      <node ref="J2" pin="S" pintype="passive"/>
+      <node ref="J3" pin="2" pinfunction="Pin_2_2" pintype="passive"/>
+      <node ref="R12" pin="2" pintype="passive"/>
+      <node ref="R13" pin="2" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="R7" pin="2" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="VSS_1" pintype="power_in"/>
+      <node ref="U1" pin="24" pinfunction="~{A9}_24" pintype="input"/>
+      <node ref="U1" pin="29" pinfunction="BC1_29" pintype="input"/>
+      <node ref="U2" pin="10" pinfunction="GND_10" pintype="power_in"/>
+      <node ref="U3" pin="12" pinfunction="GND_12" pintype="power_in"/>
+      <node ref="X1" pin="4" pinfunction="GND_4" pintype="power_in"/>
+    </net>
+    <net code="26" name="/LOGICCLK" class="Default">
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="U3" pin="1" pinfunction="CLK_1" pintype="input"/>
+    </net>
+    <net code="27" name="/MIX_L" class="Default">
+      <node ref="C6" pin="1" pintype="passive"/>
+      <node ref="R8" pin="2" pintype="passive"/>
+      <node ref="R9" pin="2" pintype="passive"/>
+    </net>
+    <net code="28" name="/MIX_R" class="Default">
+      <node ref="C7" pin="1" pintype="passive"/>
+      <node ref="R10" pin="2" pintype="passive"/>
+      <node ref="R11" pin="2" pintype="passive"/>
+    </net>
+    <net code="29" name="/OUT_L" class="Default">
+      <node ref="C6" pin="2" pintype="passive"/>
+      <node ref="J2" pin="T" pintype="passive"/>
+      <node ref="J3" pin="1" pinfunction="Pin_1_1" pintype="passive"/>
+      <node ref="R12" pin="1" pintype="passive"/>
+    </net>
+    <net code="30" name="/OUT_R" class="Default">
+      <node ref="C7" pin="2" pintype="passive"/>
+      <node ref="J2" pin="R" pintype="passive"/>
+      <node ref="J3" pin="3" pinfunction="Pin_3_3" pintype="passive"/>
+      <node ref="R13" pin="1" pintype="passive"/>
+    </net>
+    <net code="31" name="/PHI2" class="Default">
+      <node ref="J1" pin="4" pinfunction="PHI2_4" pintype="passive"/>
+      <node ref="U3" pin="2" pinfunction="PHI2_2" pintype="input"/>
+    </net>
+    <net code="32" name="/PSGCLK" class="Default">
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="U1" pin="22" pinfunction="CLOCK_22" pintype="input"/>
+    </net>
+    <net code="33" name="/PSGD0" class="Default">
+      <node ref="U1" pin="37" pinfunction="DA0_37" pintype="bidirectional"/>
+      <node ref="U2" pin="2" pinfunction="Q0_2" pintype="output"/>
+    </net>
+    <net code="34" name="/PSGD1" class="Default">
+      <node ref="U1" pin="36" pinfunction="DA1_36" pintype="bidirectional"/>
+      <node ref="U2" pin="5" pinfunction="Q1_5" pintype="output"/>
+    </net>
+    <net code="35" name="/PSGD2" class="Default">
+      <node ref="U1" pin="35" pinfunction="DA2_35" pintype="bidirectional"/>
+      <node ref="U2" pin="6" pinfunction="Q2_6" pintype="output"/>
+    </net>
+    <net code="36" name="/PSGD3" class="Default">
+      <node ref="U1" pin="34" pinfunction="DA3_34" pintype="bidirectional"/>
+      <node ref="U2" pin="9" pinfunction="Q3_9" pintype="output"/>
+    </net>
+    <net code="37" name="/PSGD4" class="Default">
+      <node ref="U1" pin="33" pinfunction="DA4_33" pintype="bidirectional"/>
+      <node ref="U2" pin="12" pinfunction="Q4_12" pintype="output"/>
+    </net>
+    <net code="38" name="/PSGD5" class="Default">
+      <node ref="U1" pin="32" pinfunction="DA5_32" pintype="bidirectional"/>
+      <node ref="U2" pin="15" pinfunction="Q5_15" pintype="output"/>
+    </net>
+    <net code="39" name="/PSGD6" class="Default">
+      <node ref="U1" pin="31" pinfunction="DA6_31" pintype="bidirectional"/>
+      <node ref="U2" pin="16" pinfunction="Q6_16" pintype="output"/>
+    </net>
+    <net code="40" name="/PSGD7" class="Default">
+      <node ref="U1" pin="30" pinfunction="DA7_30" pintype="bidirectional"/>
+      <node ref="U2" pin="19" pinfunction="Q7_19" pintype="output"/>
+    </net>
+    <net code="41" name="/RDY" class="Default">
+      <node ref="J1" pin="12" pinfunction="RDY_12" pintype="passive"/>
+      <node ref="U3" pin="23" pinfunction="RDY_23" pintype="tri_state"/>
+    </net>
+    <net code="42" name="/RWB" class="Default">
+      <node ref="J1" pin="8" pinfunction="RWB_8" pintype="passive"/>
+      <node ref="U3" pin="3" pinfunction="RW_3" pintype="input"/>
+    </net>
+    <net code="43" name="/~{RESET}" class="Default">
+      <node ref="J1" pin="10" pinfunction="~{RESET}_10" pintype="passive"/>
+      <node ref="U1" pin="23" pinfunction="~{RESET}_23" pintype="input"/>
+      <node ref="U2" pin="1" pinfunction="~{Mr}_1" pintype="input"/>
+      <node ref="U3" pin="4" pinfunction="RESET_4" pintype="input"/>
+    </net>
+    <net code="44" name="unconnected-(J1-A1-Pad3)" class="Default">
+      <node ref="J1" pin="3" pinfunction="A1_3" pintype="passive+no_connect"/>
+    </net>
+    <net code="45" name="unconnected-(J1-A2-Pad5)" class="Default">
+      <node ref="J1" pin="5" pinfunction="A2_5" pintype="passive+no_connect"/>
+    </net>
+    <net code="46" name="unconnected-(J1-A3-Pad7)" class="Default">
+      <node ref="J1" pin="7" pinfunction="A3_7" pintype="passive+no_connect"/>
+    </net>
+    <net code="47" name="unconnected-(J1-A4-Pad9)" class="Default">
+      <node ref="J1" pin="9" pinfunction="A4_9" pintype="passive+no_connect"/>
+    </net>
+    <net code="48" name="unconnected-(J1-A5-Pad11)" class="Default">
+      <node ref="J1" pin="11" pinfunction="A5_11" pintype="passive+no_connect"/>
+    </net>
+    <net code="49" name="unconnected-(J1-A6-Pad13)" class="Default">
+      <node ref="J1" pin="13" pinfunction="A6_13" pintype="passive+no_connect"/>
+    </net>
+    <net code="50" name="unconnected-(J1-A7-Pad15)" class="Default">
+      <node ref="J1" pin="15" pinfunction="A7_15" pintype="passive+no_connect"/>
+    </net>
+    <net code="51" name="unconnected-(J1-BE-Pad20)" class="Default">
+      <node ref="J1" pin="20" pinfunction="BE_20" pintype="passive+no_connect"/>
+    </net>
+    <net code="52" name="unconnected-(J1-SYNC-Pad18)" class="Default">
+      <node ref="J1" pin="18" pinfunction="SYNC_18" pintype="passive+no_connect"/>
+    </net>
+    <net code="53" name="unconnected-(J1-~{IRQ}-Pad16)" class="Default">
+      <node ref="J1" pin="16" pinfunction="~{IRQ}_16" pintype="passive+no_connect"/>
+    </net>
+    <net code="54" name="unconnected-(J1-~{ML}-Pad35)" class="Default">
+      <node ref="J1" pin="35" pinfunction="~{ML}_35" pintype="passive+no_connect"/>
+    </net>
+    <net code="55" name="unconnected-(J1-~{NMI}-Pad14)" class="Default">
+      <node ref="J1" pin="14" pinfunction="~{NMI}_14" pintype="passive+no_connect"/>
+    </net>
+    <net code="56" name="unconnected-(J1-~{VP}-Pad33)" class="Default">
+      <node ref="J1" pin="33" pinfunction="~{VP}_33" pintype="passive+no_connect"/>
+    </net>
+    <net code="57" name="unconnected-(J2-PadRN)" class="Default">
+      <node ref="J2" pin="RN" pintype="passive+no_connect"/>
+    </net>
+    <net code="58" name="unconnected-(J2-PadTN)" class="Default">
+      <node ref="J2" pin="TN" pintype="passive+no_connect"/>
+    </net>
+    <net code="59" name="unconnected-(U1-IOA0-Pad21)" class="Default">
+      <node ref="U1" pin="21" pinfunction="IOA0_21" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="60" name="unconnected-(U1-IOA1-Pad20)" class="Default">
+      <node ref="U1" pin="20" pinfunction="IOA1_20" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="61" name="unconnected-(U1-IOA2-Pad19)" class="Default">
+      <node ref="U1" pin="19" pinfunction="IOA2_19" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="62" name="unconnected-(U1-IOA3-Pad18)" class="Default">
+      <node ref="U1" pin="18" pinfunction="IOA3_18" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="63" name="unconnected-(U1-IOA4-Pad17)" class="Default">
+      <node ref="U1" pin="17" pinfunction="IOA4_17" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="64" name="unconnected-(U1-IOA5-Pad16)" class="Default">
+      <node ref="U1" pin="16" pinfunction="IOA5_16" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="65" name="unconnected-(U1-IOA6-Pad15)" class="Default">
+      <node ref="U1" pin="15" pinfunction="IOA6_15" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="66" name="unconnected-(U1-IOA7-Pad14)" class="Default">
+      <node ref="U1" pin="14" pinfunction="IOA7_14" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="67" name="unconnected-(U1-IOB0-Pad13)" class="Default">
+      <node ref="U1" pin="13" pinfunction="IOB0_13" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="68" name="unconnected-(U1-IOB1-Pad12)" class="Default">
+      <node ref="U1" pin="12" pinfunction="IOB1_12" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="69" name="unconnected-(U1-IOB2-Pad11)" class="Default">
+      <node ref="U1" pin="11" pinfunction="IOB2_11" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="70" name="unconnected-(U1-IOB3-Pad10)" class="Default">
+      <node ref="U1" pin="10" pinfunction="IOB3_10" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="71" name="unconnected-(U1-IOB4-Pad9)" class="Default">
+      <node ref="U1" pin="9" pinfunction="IOB4_9" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="72" name="unconnected-(U1-IOB5-Pad8)" class="Default">
+      <node ref="U1" pin="8" pinfunction="IOB5_8" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="73" name="unconnected-(U1-IOB6-Pad7)" class="Default">
+      <node ref="U1" pin="7" pinfunction="IOB6_7" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="74" name="unconnected-(U1-IOB7-Pad6)" class="Default">
+      <node ref="U1" pin="6" pinfunction="IOB7_6" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="75" name="unconnected-(U1-NC-Pad2)" class="Default">
+      <node ref="U1" pin="2" pinfunction="NC_2" pintype="no_connect"/>
+    </net>
+    <net code="76" name="unconnected-(U1-NC-Pad5)" class="Default">
+      <node ref="U1" pin="5" pinfunction="NC_5" pintype="no_connect"/>
+    </net>
+    <net code="77" name="unconnected-(U1-TEST1-Pad39)" class="Default">
+      <node ref="U1" pin="39" pinfunction="TEST1_39" pintype="passive+no_connect"/>
+    </net>
+    <net code="78" name="unconnected-(U3-DONE-Pad20)" class="Default">
+      <node ref="U3" pin="20" pinfunction="DONE_20" pintype="output+no_connect"/>
+    </net>
+    <net code="79" name="unconnected-(U3-EN-Pad14)" class="Default">
+      <node ref="U3" pin="14" pinfunction="EN_14" pintype="output+no_connect"/>
+    </net>
+    <net code="80" name="unconnected-(U3-NC15-Pad15)" class="Default">
+      <node ref="U3" pin="15" pinfunction="NC15_15" pintype="no_connect"/>
+    </net>
+    <net code="81" name="unconnected-(U3-NREQ-Pad16)" class="Default">
+      <node ref="U3" pin="16" pinfunction="NREQ_16" pintype="output+no_connect"/>
+    </net>
+    <net code="82" name="unconnected-(U3-Q0-Pad17)" class="Default">
+      <node ref="U3" pin="17" pinfunction="Q0_17" pintype="output+no_connect"/>
+    </net>
+    <net code="83" name="unconnected-(U3-Q1-Pad18)" class="Default">
+      <node ref="U3" pin="18" pinfunction="Q1_18" pintype="output+no_connect"/>
+    </net>
+    <net code="84" name="unconnected-(U3-Q2-Pad19)" class="Default">
+      <node ref="U3" pin="19" pinfunction="Q2_19" pintype="output+no_connect"/>
+    </net>
+  </nets>
+</export>

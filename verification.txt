@@ -1,0 +1,1 @@
+PASS: schematic/PCB/manifest connectivity; J1 = host J5 (36 pads, offsets and signals); U3 fuse map over 65536 addresses x R/W x reset x PHI2 (selects $C100-$C1FF writes only, RDY only in PHI2 high until the sequencer runs); YM2149 strapping; RDY only on U3 and J1.
