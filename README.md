@@ -1,12 +1,10 @@
 # SolderDemon 6502 Audio Board
 
+## Overview
+
 A YM2149F programmable sound generator card for the SolderDemon 6502 single-board computer, a descendant of [rosco_6502](https://github.com/rosco-m68k/rosco_6502) that keeps its expansion bus.
 
 It is the 6502 sibling of the SolderDemon m68k Audio card and works the same way: the PSG sits behind a data latch and a GAL sequencer that times the strobes in hardware. The CPU stores a register number at `$C100` and a value at `$C101`; the card holds the CPU with `RDY` (the 6502's counterpart of `/DTACK`) for the ~4 µs the PSG needs. Three tone channels, noise and envelope, passive ABC stereo line out.
-
-![Assembled SolderDemon 6502 Audio Board](images/solderdemon_6502-audio-photo.jpg)
-
-[3D render](images/solderdemon_6502-audio-3d.png)
 
 > **Status.** r1 fabrication files are available. Physical verification of this layout is pending. See the [build guide](docs/BUILD.md).
 
@@ -14,33 +12,22 @@ It is the 6502 sibling of the SolderDemon m68k Audio card and works the same way
 
 - [KiCad project](design/solderdemon_6502-audio.kicad_pro)
 - [Schematic (PDF)](manufacturing/solderdemon_6502-audio-schematic.pdf)
+- [Build guide](docs/BUILD.md)
 - [Gerbers and drill files](manufacturing/solderdemon_6502-audio-r1-2026-11-12-gerbers.zip)
-- [Build and first-unit acceptance](docs/BUILD.md)
 
 ## Board views
+
+![Assembled SolderDemon 6502 Audio Board](images/solderdemon_6502-audio-photo.jpg)
+
+[3D render](images/solderdemon_6502-audio-3d.png)
 
 | Top | Bottom |
 |:---:|:---:|
 | ![Top view](images/solderdemon_6502-audio-top.png) | ![Bottom view](images/solderdemon_6502-audio-bottom.png) |
 
-## Compared with rosco_6502-audio
+## Hardware
 
-The card replaces the first SolderDemon attempt, `rosco_6502-audio` moved onto the SolderDemon socket unchanged (never built): a W65C22S VIA drove `BC1`/`BDIR` from software, with `NOP`s timing the strobe, an ATF16V8 decoded the VIA and a 2.000 MHz can clocked the PSG.
-
-| | rosco_6502-audio port | r1 |
-|---|---|---|
-| Bus interface | W65C22S VIA + ATF16V8B decoder | ATF22V10C-7 sequencer + 74HCT273 latch, as on the m68k card |
-| PSG write | 2 VIA stores per strobe, 4 per register, timed by `NOP` | 2 plain stores: register number, value |
-| Strobe length | 0.5–6 µs, set by the CPU clock; NMI or single-step could break 10 µs | 1.09 µs from the PSG clock, at any CPU clock |
-| CPU clock | 1–10 MHz | any, to 14 MHz |
-| PSG clock | 2.000 MHz, on Yamaha's limit | 1.8432 MHz, as on the m68k card |
-| Bus lines | A0–A3, A8–A15, `~IRQ` (diode) | A0, A8–A15, `RDY`; no `~IRQ` |
-| ICs | 3 + can (2 × DIP-40) | 3 + can |
-| Board | 100 × 90 mm, R4 | 72 × 100 mm: as deep as the busboard, 72 mm high; jack on the side |
-
-What r1 gives up: the VIA's timers and interrupt. Playback ticks come from the host (the DUART timer).
-
-## Highlights
+### Highlights
 
 - **Sound generator:** Yamaha **YM2149F** (`U1`, DIP-40), clocked by a **1.8432 MHz 5 V can** (`X1`) with `SEL` high.
 - **Hardware-timed interface:** **ATF22V10C-7PX** (`U3`) decodes a write to `$C100–$C1FF`, pulls `RDY`, latches the byte into a **74HCT273** (`U2`), raises `BDIR` for two PSG clocks and drives `RDY` high again. `A0` drives `BC2` directly, `BC1` is grounded.
@@ -51,7 +38,7 @@ What r1 gives up: the VIA's timers and interrupt. Playback ticks come from the h
 - **Busboard form factor:** 72 × 100 mm, 2 layers, R4 corners, no mounting holes. 100 mm is the busboard's depth, so both side edges are flush with it and with the host; the card stands 69 mm tall. Copyright on the solder side.
 - **100 % through-hole**, all ICs socketed.
 
-## Memory Map
+### Memory Map
 
 | Address | Access | Function |
 |:---|:---|:---|
@@ -62,7 +49,7 @@ What r1 gives up: the VIA's timers and interrupt. Playback ticks come from the h
 
 The DUART is at `$C000–$C00F`, the RAM board at `$CE00`/`$CF00` and `$D000–$DFFF`. `$C100` is this project's choice, not an upstream allocation.
 
-## Operating Principle
+### Operating Principle
 
 ```text
        SolderDemon 6502 bus (J1)
@@ -91,7 +78,26 @@ The DUART is at `$C000–$C00F`, the RAM board at `$CE00`/`$CF00` and `$D000–$
 
 Timing budget: [docs/TIMING.md](docs/TIMING.md).
 
-## Programming Example
+### Compared with rosco_6502-audio
+
+The card replaces the first SolderDemon attempt, `rosco_6502-audio` moved onto the SolderDemon socket unchanged (never built): a W65C22S VIA drove `BC1`/`BDIR` from software, with `NOP`s timing the strobe, an ATF16V8 decoded the VIA and a 2.000 MHz can clocked the PSG.
+
+| | rosco_6502-audio port | r1 |
+|---|---|---|
+| Bus interface | W65C22S VIA + ATF16V8B decoder | ATF22V10C-7 sequencer + 74HCT273 latch, as on the m68k card |
+| PSG write | 2 VIA stores per strobe, 4 per register, timed by `NOP` | 2 plain stores: register number, value |
+| Strobe length | 0.5–6 µs, set by the CPU clock; NMI or single-step could break 10 µs | 1.09 µs from the PSG clock, at any CPU clock |
+| CPU clock | 1–10 MHz | any, to 14 MHz |
+| PSG clock | 2.000 MHz, on Yamaha's limit | 1.8432 MHz, as on the m68k card |
+| Bus lines | A0–A3, A8–A15, `~IRQ` (diode) | A0, A8–A15, `RDY`; no `~IRQ` |
+| ICs | 3 + can (2 × DIP-40) | 3 + can |
+| Board | 100 × 90 mm, R4 | 72 × 100 mm: as deep as the busboard, 72 mm high; jack on the side |
+
+What r1 gives up: the VIA's timers and interrupt. Playback ticks come from the host (the DUART timer).
+
+## Using the board
+
+### Programming Example
 
 ```asm
 PSG_REG  = $C100
@@ -121,7 +127,9 @@ ld65 -C code/software/demo/demo.cfg -o code/software/demo/demo.bin -m code/softw
 
 The demo loads at `$1000`: `JSR $1000` leaves the chord playing.
 
-## Bill of Materials
+## Build and verification
+
+### Bill of Materials
 
 | Reference | Value | Package | Notes |
 |:---|:---|:---|:---|
@@ -144,7 +152,7 @@ The demo loads at `$1000`: `JSR $1000` leaves the chord playing.
 
 Plus sockets: 1 × DIP-40, 1 × DIP-24, 1 × DIP-20. [BOM.csv](design/BOM.csv). Budget 250 mA at 5 V (not measured). Keep parts under about 11 mm for the 20 mm slot pitch.
 
-## PLD Firmware (U3)
+### PLD Firmware (U3)
 
 Source `code/firmware/pld/audio_sequencer.pld` (GALasm), image `code/firmware/pld/audio_sequencer.jed`:
 
@@ -155,7 +163,7 @@ minipro -p ATF22V10C -w code/firmware/pld/audio_sequencer.jed
 
 Program as ATF22V10C, verify after writing. Do not use an ATF16V8: neither the pins nor the fuse map fit.
 
-## First Power-Up
+### First Power-Up
 
 1. Power off: check `J1` orientation, electrolytic polarity, no +5 V–GND short; check X1's pin 1 function.
 2. Program and verify `U3`. Fit the ICs by their pin 1 marks.
@@ -164,7 +172,7 @@ Program as ATF22V10C, verify after writing. Do not use an ATF16V8: neither the p
 5. Load `code/software/demo/demo.bin` at `$1000`, `JSR $1000`: a C–E–G chord.
 6. On a scope, per store: `J1`-12 (RDY) low ~4 µs, `U3`-21 (BDIR) one 1.09 µs pulse, `U3`-22 (CAPTURE) rising at PHI2 falls before it. Check CAPTURE against D0–D7 at the highest clock you intend to run (docs/TIMING.md, capture hold).
 
-## Files
+### Files
 
 - **KiCad 10 project:** [design/](design/)
 - **Libraries:** `SolderDemonAudio.kicad_sym` (bus, sequencer), `SolderDemonAudio.pretty/`: the host's `PinSocket_2x18_P2.54mm_Horizontal_EdgeMount`, the PJ-307 jack (stock, and `_EdgeMount` with the silk cut at the board edge, which `build_card.py` writes), the SolderDemon logo
@@ -173,7 +181,7 @@ Program as ATF22V10C, verify after writing. Do not use an ATF16V8: neither the p
 - **PCB:** 2 layers, 100 × 72 mm in the files (69 mm tall in the slot, 100 mm deep), 1.6 mm FR-4, 1 oz, GND pour on both layers, no mounting holes
 - **J1 geometry:** the busboard specification gives pin 1 at `(5.775, 14.425)` mm from the top-left corner with the bus edge on the left, as the host's `J5`. The KiCad files show the card a quarter turn round, bus edge down as on the m68k card: there pin 1 sits at `(14.425, 63.225)` and the board is 100 × 72 mm. The bus edge goes into the slot, the opposite edge stands up, and the jack (on the left in the files) leaves through the side at the busboard's pin 1 edge. `PIN 1` and a triangle mark the socket, which hides the square pad.
 
-### Verification
+#### Verification
 
 | Check | Result |
 |---|---|
@@ -185,7 +193,7 @@ Program as ATF22V10C, verify after writing. Do not use an ATF16V8: neither the p
 
 The sim proves the logic and the model's timing, not the silicon.
 
-### Rebuilding
+#### Rebuilding
 
 The board is generated, not edited by hand: change `tools/build_card.py` (circuit and placement) or the `.pld`, then run the chain. A KiCad edit is lost on the next run.
 
@@ -202,16 +210,15 @@ python tools/verify_driver.py
 "$K/python.exe" tools/make_outputs.py             # Gerbers, drill, zip, schematic PDF, renders
 ```
 
-## Sources
+### Sources
 
 [Yamaha YM2149 datasheet](https://www.ym2149.com/ym2149.pdf), [WDC W65C02S datasheet](https://www.westerndesigncenter.com/wdc/documentation/w65c02s.pdf), [Microchip ATF22V10C datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/doc0735.pdf). The bus pinout comes from the local `solderdemon_6502` host schematic (`bus-reference.xml`, rewritten by every build).
 
-## Licences and attribution
+### Reproducing the board
 
-- **Hardware:** [CERN Open Hardware Licence v1.2](LICENCE.hardware.txt).
-- **Code:** [MIT](LICENSE.code), covering the driver, demo, PLD source and tools.
+The KiCad project and the fabrication package can be used directly from this repository. Place the SolderDemon 6502 mainboard checkout beside this checkout for bus verification and schematic generation. Full autorouting and packaging use the shared SolderDemon hardware workspace tools.
 
-Copyright © 2026 solderdemon_6502-audio contributors. The card follows the [rosco_6502](https://github.com/rosco-m68k/rosco_6502) expansion interface for compatibility. Original rosco_6502 authorship: Ross Bamford & Contributors. Retained third-party notices identify their respective sources.
+For the optional jack model, use the [PJ-307 vendor model](https://lcsc.com/product-detail/audio-connectors_hooya-pj-307_C2939173.html) and save it as `design/3d/PJ-307.step`.
 
 <!-- repository-layout -->
 ## Repository layout
@@ -227,8 +234,9 @@ Copyright © 2026 solderdemon_6502-audio contributors. The card follows the [ros
 Open the project in `design/`. Use the scripts in `tools/` to change the design. The `.kicad_pro` file holds the DRC rules.
 <!-- /repository-layout -->
 
-## Reproducing the board
+## Licences and attribution
 
-The KiCad project and the fabrication package can be used directly from this repository. Place the SolderDemon 6502 mainboard checkout beside this checkout for bus verification and schematic generation. Full autorouting and packaging use the shared SolderDemon hardware workspace tools.
+- **Hardware:** [CERN Open Hardware Licence v1.2](LICENCE.hardware.txt).
+- **Code:** [MIT](LICENSE.code), covering the driver, demo, PLD source and tools.
 
-For the optional jack model, use the [PJ-307 vendor model](https://lcsc.com/product-detail/audio-connectors_hooya-pj-307_C2939173.html) and save it as `design/3d/PJ-307.step`.
+Copyright © 2026 solderdemon_6502-audio contributors. The card follows the [rosco_6502](https://github.com/rosco-m68k/rosco_6502) expansion interface for compatibility. Original rosco_6502 authorship: Ross Bamford & Contributors. Retained third-party notices identify their respective sources.
