@@ -1,0 +1,3 @@
+(fp_lib_table (lib (name "SolderDemonAudio") (type "KiCad") (uri "${KIPRJMOD}/SolderDemonAudio.pretty") (options "") (descr ""))(lib (name "SolderDemonCaps") (type "KiCad") (uri "${KIPRJMOD}/SolderDemonCaps.pretty") (options "") (descr ""))
+  (lib (name "SolderDemonBrand")(type "KiCad")(uri "${KIPRJMOD}/SolderDemonBrand.pretty")(options "")(descr "SolderDemon logo, tools/brand"))
+)

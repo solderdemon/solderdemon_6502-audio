@@ -125,6 +125,8 @@ class Design:
         return nets
 
     def write(self, out, fp_libs):
+        if any(p['fp'].startswith('SolderDemonCaps:') for p in self.parts):
+            fp_libs = [*fp_libs, ('SolderDemonCaps', '${KIPRJMOD}/SolderDemonCaps.pretty')]
         els = []
         for p in self.parts:
             x, y = p['xy']

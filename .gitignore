@@ -4,7 +4,27 @@ logs/
 *-backups/
 *.kicad_prl
 ~*.lck
-code/demo/*.o
+code/software/demo/*.o
 routing.dsn
 routing.ses
 routing-swarm/
+
+# Local build products
+/code/build/*
+!/code/build/README.md
+
+# Python caches
+__pycache__/
+
+# Local release archives and compatibility exports
+/releases/
+/production/
+
+# Local KiCad and fabrication work products
+*.kicad_prl
+.history/
+*-backups/
+fabrication-toolkit-options.json
+
+# Optional vendor 3D model
+/design/3d/PJ-307.step

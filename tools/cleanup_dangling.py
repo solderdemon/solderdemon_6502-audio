@@ -2,12 +2,12 @@
 Run with KiCad 10 python; route_card.py calls it repeatedly until it prints 'removed: 0'.
 """
 from pathlib import Path
-import re, subprocess
+import os, re, subprocess
 import pcbnew as pcb
 
 ROOT = Path(__file__).resolve().parents[1]
-BOARD = ROOT / 'solderdemon_6502-audio.kicad_pcb'
-CLI = 'C:/Program Files/KiCad/10.0/bin/kicad-cli.exe'
+BOARD = ROOT / 'design/solderdemon_6502-audio.kicad_pcb'
+CLI = os.environ.get("KICAD_CLI", "C:/Program Files/KiCad/10.0/bin/kicad-cli.exe")
 RPT = ROOT / 'drc.rpt'
 
 subprocess.run([CLI, 'pcb', 'drc', '-o', str(RPT), str(BOARD)], capture_output=True)

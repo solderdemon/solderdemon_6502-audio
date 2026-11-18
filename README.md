@@ -4,9 +4,24 @@ A YM2149F programmable sound generator card for the SolderDemon 6502 single-boar
 
 It is the 6502 sibling of the SolderDemon m68k Audio card and works the same way: the PSG sits behind a data latch and a GAL sequencer that times the strobes in hardware. The CPU stores a register number at `$C100` and a value at `$C101`; the card holds the CPU with `RDY` (the 6502's counterpart of `/DTACK`) for the ~4 µs the PSG needs. Three tone channels, noise and envelope, passive ABC stereo line out.
 
-![SolderDemon 6502 Audio Board](solderdemon_6502-audio-3d.png)
+![Assembled SolderDemon 6502 Audio Board](images/solderdemon_6502-audio-photo.jpg)
 
-> **Status:** r1. Schematic and PCB complete: ERC 0, DRC 0 violations, 0 unconnected, 0 schematic-parity issues. The sequencer is simulated from its JEDEC fuse map with bus timing at 14, 10, 4, 1 and 0.25 MHz; the driver runs on a 65C02 model. **No physical prototype has been built or tested yet.**
+[3D render](images/solderdemon_6502-audio-3d.png)
+
+> **Status.** r1 fabrication files are available. Physical verification of this layout is pending. See the [build guide](docs/BUILD.md).
+
+## Start here
+
+- [KiCad project](design/solderdemon_6502-audio.kicad_pro)
+- [Schematic (PDF)](manufacturing/solderdemon_6502-audio-schematic.pdf)
+- [Gerbers and drill files](manufacturing/solderdemon_6502-audio-r1-2026-11-12-gerbers.zip)
+- [Build and first-unit acceptance](docs/BUILD.md)
+
+## Board views
+
+| Top | Bottom |
+|:---:|:---:|
+| ![Top view](images/solderdemon_6502-audio-top.png) | ![Bottom view](images/solderdemon_6502-audio-bottom.png) |
 
 ## Compared with rosco_6502-audio
 
@@ -21,7 +36,7 @@ The card replaces the first SolderDemon attempt, `rosco_6502-audio` moved onto t
 | PSG clock | 2.000 MHz, on Yamaha's limit | 1.8432 MHz, as on the m68k card |
 | Bus lines | A0–A3, A8–A15, `~IRQ` (diode) | A0, A8–A15, `RDY`; no `~IRQ` |
 | ICs | 3 + can (2 × DIP-40) | 3 + can |
-| Board | 100 × 90 mm, R4 | 60 × 100 mm: as deep as the busboard, 60 mm high; jack on the side |
+| Board | 100 × 90 mm, R4 | 72 × 100 mm: as deep as the busboard, 72 mm high; jack on the side |
 
 What r1 gives up: the VIA's timers and interrupt. Playback ticks come from the host (the DUART timer).
 
@@ -33,7 +48,7 @@ What r1 gives up: the VIA's timers and interrupt. Playback ticks come from the h
 - **Write-only, read-safe:** reads of the page do nothing and are not stretched; the PSG never drives the bus.
 - **Passive ABC stereo:** A left, C right, B in both at about −6.9 dB; AC coupled, 100 kΩ bleeders.
 - **Two outputs:** 3.5 mm **PJ-307** jack (`J2`, HOOYA, LCSC `C2939173`) on the top side edge, flush with the busboard's top (pin 1) edge, so it can go through a case wall like a PC card's bracket, and a 1×3 header (`J3`: L / GND / R).
-- **Busboard form factor:** 60 × 100 mm, 2 layers, R4 corners, no mounting holes. 100 mm is the busboard's depth, so both side edges are flush with it and with the host; the card stands 60 mm tall. Copyright on the solder side.
+- **Busboard form factor:** 72 × 100 mm, 2 layers, R4 corners, no mounting holes. 100 mm is the busboard's depth, so both side edges are flush with it and with the host; the card stands 69 mm tall. Copyright on the solder side.
 - **100 % through-hole**, all ICs socketed.
 
 ## Memory Map
@@ -96,12 +111,12 @@ psg_write:
     rts
 ```
 
-`code/demo/psg.s` has `psg_write`, `psg_init` (all registers 0, mixer `$3F`), `psg_silence` and `psg_test_chord` (C4–E4–G4 at 1.8432 MHz: periods 440, 349, 294). There is no delay anywhere: the card holds the CPU as long as it needs.
+`code/software/demo/psg.s` has `psg_write`, `psg_init` (all registers 0, mixer `$3F`), `psg_silence` and `psg_test_chord` (C4–E4–G4 at 1.8432 MHz: periods 440, 349, 294). There is no delay anywhere: the card holds the CPU as long as it needs.
 
 ```sh
-ca65 code/demo/psg.s -l code/demo/psg.lst
-ca65 code/demo/demo.s
-ld65 -C code/demo/demo.cfg -o code/demo/demo.bin -m code/demo/demo.map -Ln code/demo/demo.lbl code/demo/demo.o code/demo/psg.o
+ca65 code/software/demo/psg.s -l code/software/demo/psg.lst
+ca65 code/software/demo/demo.s
+ld65 -C code/software/demo/demo.cfg -o code/software/demo/demo.bin -m code/software/demo/demo.map -Ln code/software/demo/demo.lbl code/software/demo/demo.o code/software/demo/psg.o
 ```
 
 The demo loads at `$1000`: `JSR $1000` leaves the chord playing.
@@ -123,19 +138,19 @@ The demo loads at `$1000`: `JSR $1000` leaves the chord playing.
 | **R8, R11** | 10 kΩ | Axial | A → left, C → right. |
 | **R9, R10** | 22 kΩ | Axial | B → left and right. |
 | **R12, R13** | 100 kΩ | Axial | Output bleeders. |
-| **C1–C4** | 100 nF | Disc, P2.5 mm | U1, U2, U3, X1. |
+| **C1–C4** | 100 nF | Radial, 5.08 mm pitch | U1, U2, U3, X1. |
 | **C5** | 47 µF / 16 V | Radial D6.3 mm | Bulk at J1. |
 | **C6, C7** | 10 µF / 16 V | Radial D6.3 mm | Output coupling, `+` to the mixer. |
 
-Plus sockets: 1 × DIP-40, 1 × DIP-24, 1 × DIP-20. [BOM.csv](BOM.csv). Budget 250 mA at 5 V (not measured). Keep parts under about 11 mm for the 20 mm slot pitch.
+Plus sockets: 1 × DIP-40, 1 × DIP-24, 1 × DIP-20. [BOM.csv](design/BOM.csv). Budget 250 mA at 5 V (not measured). Keep parts under about 11 mm for the 20 mm slot pitch.
 
 ## PLD Firmware (U3)
 
-Source `code/pld/audio_sequencer.pld` (GALasm), image `code/pld/audio_sequencer.jed`:
+Source `code/firmware/pld/audio_sequencer.pld` (GALasm), image `code/firmware/pld/audio_sequencer.jed`:
 
 ```sh
-galasm code/pld/audio_sequencer.pld
-minipro -p ATF22V10C -w code/pld/audio_sequencer.jed
+galasm code/firmware/pld/audio_sequencer.pld
+minipro -p ATF22V10C -w code/firmware/pld/audio_sequencer.jed
 ```
 
 Program as ATF22V10C, verify after writing. Do not use an ATF16V8: neither the pins nor the fuse map fit.
@@ -146,17 +161,17 @@ Program as ATF22V10C, verify after writing. Do not use an ATF16V8: neither the p
 2. Program and verify `U3`. Fit the ICs by their pin 1 marks.
 3. Run the host at 1–2 MHz first. 5 V on `U1`-40, `U2`-20, `U3`-24; 1.8432 MHz on `U1`-22; `U3`-21 (BDIR) low.
 4. Line out to active speakers or an amplifier (≥ 10 kΩ), not headphones.
-5. Load `code/demo/demo.bin` at `$1000`, `JSR $1000`: a C–E–G chord.
+5. Load `code/software/demo/demo.bin` at `$1000`, `JSR $1000`: a C–E–G chord.
 6. On a scope, per store: `J1`-12 (RDY) low ~4 µs, `U3`-21 (BDIR) one 1.09 µs pulse, `U3`-22 (CAPTURE) rising at PHI2 falls before it. Check CAPTURE against D0–D7 at the highest clock you intend to run (docs/TIMING.md, capture hold).
 
 ## Files
 
-- **KiCad 10 project:** `solderdemon_6502-audio.kicad_pro` / `.kicad_sch` / `.kicad_pcb`
+- **KiCad 10 project:** [design/](design/)
 - **Libraries:** `SolderDemonAudio.kicad_sym` (bus, sequencer), `SolderDemonAudio.pretty/`: the host's `PinSocket_2x18_P2.54mm_Horizontal_EdgeMount`, the PJ-307 jack (stock, and `_EdgeMount` with the silk cut at the board edge, which `build_card.py` writes), the SolderDemon logo
-- **Schematic PDF:** [solderdemon_6502-audio.pdf](solderdemon_6502-audio.pdf); **BOM:** [BOM.csv](BOM.csv)
-- **Gerbers:** [manufacturing/solderdemon_6502-audio-r1-gerbers.zip](manufacturing/solderdemon_6502-audio-r1-gerbers.zip), unpacked in [manufacturing/gerbers/](manufacturing/gerbers/)
-- **PCB:** 2 layers, 100 × 60 mm in the files (60 mm tall in the slot, 100 mm deep), 1.6 mm FR-4, 1 oz, GND pour on both layers, no mounting holes
-- **J1 geometry:** the busboard specification gives pin 1 at `(5.775, 14.425)` mm from the top-left corner with the bus edge on the left, as the host's `J5`. The KiCad files show the card a quarter turn round, bus edge down as on the m68k card: there pin 1 sits at `(14.425, 54.225)` and the board is 100 × 60 mm. The bus edge goes into the slot, the opposite edge stands up, and the jack (on the left in the files) leaves through the side at the busboard's pin 1 edge. `PIN 1` and a triangle mark the socket, which hides the square pad.
+- **Schematic PDF:** [Schematic](manufacturing/solderdemon_6502-audio-schematic.pdf); **BOM:** [BOM.csv](design/BOM.csv)
+- **Gerbers:** [manufacturing/solderdemon_6502-audio-r1-2026-11-12-gerbers.zip](manufacturing/solderdemon_6502-audio-r1-2026-11-12-gerbers.zip), unpacked in [manufacturing/gerbers/](manufacturing/gerbers/)
+- **PCB:** 2 layers, 100 × 72 mm in the files (69 mm tall in the slot, 100 mm deep), 1.6 mm FR-4, 1 oz, GND pour on both layers, no mounting holes
+- **J1 geometry:** the busboard specification gives pin 1 at `(5.775, 14.425)` mm from the top-left corner with the bus edge on the left, as the host's `J5`. The KiCad files show the card a quarter turn round, bus edge down as on the m68k card: there pin 1 sits at `(14.425, 63.225)` and the board is 100 × 72 mm. The bus edge goes into the slot, the opposite edge stands up, and the jack (on the left in the files) leaves through the side at the busboard's pin 1 edge. `PIN 1` and a triangle mark the socket, which hides the square pad.
 
 ### Verification
 
@@ -176,22 +191,44 @@ The board is generated, not edited by hand: change `tools/build_card.py` (circui
 
 ```sh
 K="C:/Program Files/KiCad/10.0/bin"
-../tools/galasm.exe code/pld/audio_sequencer.pld      # run in code/pld
+(cd code/firmware/pld && galasm audio_sequencer.pld)
 "$K/python.exe" tools/build_card.py      # schematic, symbols, unrouted board, design.json, BOM, bus-reference.xml
 python tools/sim_card.py                 # timed simulation from design.json + .jed
 "$K/python.exe" tools/route_card.py      # ../tools/route_lib.py: Freerouting swarm, GND pour, cleanup
-"$K/kicad-cli.exe" sch erc -o solderdemon_6502-audio-erc.rpt solderdemon_6502-audio.kicad_sch
-"$K/kicad-cli.exe" pcb drc --schematic-parity --severity-error --severity-warning -o solderdemon_6502-audio-drc.rpt solderdemon_6502-audio.kicad_pcb
+"$K/kicad-cli.exe" sch erc -o solderdemon_6502-audio-erc.rpt design/solderdemon_6502-audio.kicad_sch
+"$K/kicad-cli.exe" pcb drc --schematic-parity --severity-error --severity-warning -o solderdemon_6502-audio-drc.rpt design/solderdemon_6502-audio.kicad_pcb
 "$K/python.exe" tools/verify_design.py
 python tools/verify_driver.py
-python tools/make_outputs.py             # Gerbers, drill, zip, schematic PDF, renders
+"$K/python.exe" tools/make_outputs.py             # Gerbers, drill, zip, schematic PDF, renders
 ```
 
 ## Sources
 
 [Yamaha YM2149 datasheet](https://www.ym2149.com/ym2149.pdf), [WDC W65C02S datasheet](https://www.westerndesigncenter.com/wdc/documentation/w65c02s.pdf), [Microchip ATF22V10C datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/doc0735.pdf). The bus pinout comes from the local `solderdemon_6502` host schematic (`bus-reference.xml`, rewritten by every build).
 
-## License
+## Licences and attribution
 
-- **Hardware:** CERN Open Hardware Licence Version 2 — Strongly Reciprocal ([CERN-OHL-S v2](LICENCE.hardware.txt)).
-- **Code** (driver, demo, PLD source, tools): MIT ([LICENSE.code](LICENSE.code)).
+- **Hardware:** [CERN Open Hardware Licence v1.2](LICENCE.hardware.txt).
+- **Code:** [MIT](LICENSE.code), covering the driver, demo, PLD source and tools.
+
+Copyright © 2026 solderdemon_6502-audio contributors. The card follows the [rosco_6502](https://github.com/rosco-m68k/rosco_6502) expansion interface for compatibility. Original rosco_6502 authorship: Ross Bamford & Contributors. Retained third-party notices identify their respective sources.
+
+<!-- repository-layout -->
+## Repository layout
+
+- [`design/`](design/solderdemon_6502-audio.kicad_pro) holds the KiCad project, schematic, PCB and local libraries.
+- [`code/firmware/`](code/firmware/) — Sequencer equations and JEDEC programming files.
+- [`code/software/`](code/software/) — The PSG driver and ca65 demo.
+- [`code/build/`](code/build/) — Local build products.
+- [`tools/`](tools/) — Design generators and verification.
+- [`manufacturing/`](manufacturing/) — Fabrication files and schematic PDF.
+- [`images/`](images/) — Board views and artwork.
+
+Open the project in `design/`. Use the scripts in `tools/` to change the design. The `.kicad_pro` file holds the DRC rules.
+<!-- /repository-layout -->
+
+## Reproducing the board
+
+The KiCad project and the fabrication package can be used directly from this repository. Place the SolderDemon 6502 mainboard checkout beside this checkout for bus verification and schematic generation. Full autorouting and packaging use the shared SolderDemon hardware workspace tools.
+
+For the optional jack model, use the [PJ-307 vendor model](https://lcsc.com/product-detail/audio-connectors_hooya-pj-307_C2939173.html) and save it as `design/3d/PJ-307.step`.

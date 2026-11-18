@@ -1,0 +1,2 @@
+PASS: 30 runs (14/10/4/1/0.25 MHz, GAL 3/7.5 ns, 3 PSG clock phases), 870 PSG writes through the JEDEC fuse map; registers, one BDIR per write, BDIR 1085-1086 ns, YM setup/hold, latch contents, RDY timing and scope.
+Paper hold at the PHI2-fall capture: tDHW 10 - GAL 7.5 - 273 th 3 = -0.5 ns (see docs/TIMING.md).

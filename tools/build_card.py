@@ -5,7 +5,7 @@ the PSG sits behind a data latch and a GAL sequencer that times its strobes in h
 CPU just stores two bytes. r1 (the rosco_6502-audio port) drove the PSG from a W65C22S VIA with
 software-timed strobes and an ATF16V8 decoder; r1 drops the VIA and the 16V8:
 
-  U3 ATF22V10C-7PX (code/pld/audio_sequencer.pld): decodes a write to $C100-$C1FF, pulls RDY low so
+  U3 ATF22V10C-7PX (code/firmware/pld/audio_sequencer.pld): decodes a write to $C100-$C1FF, pulls RDY low so
      the W65C02S holds the write cycle, latches the data into U2, raises BDIR for two PSG clocks,
      then drives RDY high and lets go when the CPU moves on. The 6502 RDY plays the m68k /DTACK.
   U2 74HCT273: holds the byte for the PSG while BDIR is high.
@@ -17,26 +17,29 @@ Passive ABC stereo line out as on both earlier cards: A left, C right, B in both
     "C:/Program Files/KiCad/10.0/bin/python.exe" tools/build_card.py
 """
 from pathlib import Path
-import math, re, subprocess, xml.etree.ElementTree as ET
+import math, os, re, subprocess, sys, xml.etree.ElementTree as ET
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+import audio_mechanics as mech
 import videolib as g
 import gal
 import pcbnew as pcb
 
 ROOT = Path(__file__).resolve().parents[1]
-CLI = 'C:/Program Files/KiCad/10.0/bin/kicad-cli.exe'
-g.LIB = Path('C:/Program Files/KiCad/10.0/share/kicad')
+DESIGN = ROOT / 'design'
+CLI = os.environ.get('KICAD_CLI', 'C:/Program Files/KiCad/10.0/bin/kicad-cli.exe')
+g.LIB = Path(os.environ.get('KICAD_SHARE', 'C:/Program Files/KiCad/10.0/share/kicad'))
 NAME = 'solderdemon_6502-audio'
 LIBNAME = 'SolderDemonAudio'
-PAGE = 0xC100           # decoded in code/pld/audio_sequencer.pld
-REV = 'r1'
-DATE = '2026-10-13'
-W, H = 60.0, 100.0                      # H: the busboard's depth, so both side edges are flush with it
+PAGE = 0xC100           # decoded in code/firmware/pld/audio_sequencer.pld
+REV = mech.REV
+DATE = mech.DATE
+W, H = mech.HEIGHT, mech.WIDTH                      # H: the busboard's depth, so both side edges are flush with it
 R_BUS = R_FAR = 4.0
 
 d = g.Design(NAME, 'SolderDemon 6502 Audio / YM2149F, hardware-timed (ATF22V10C + 74HCT273)', REV, DATE,
              paper='A3', libname=LIBNAME, ns='solderdemon-6502-audio-r1/')
 DIP = lambda n, w=7.62: f'Package_DIP:DIP-{n}_W{w:.2f}mm_Socket_LongPads'
-FP_C = 'Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm'
+FP_C = 'SolderDemonCaps:C_Radial_5.08mm'
 FP_CP = 'Capacitor_THT:CP_Radial_D6.3mm_P2.50mm'
 FP_R = 'Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal'
 FP_BUS = f'{LIBNAME}:PinSocket_2x18_P2.54mm_Horizontal_EdgeMount'      # the host's J5
@@ -44,7 +47,7 @@ FP_JACK = f'{LIBNAME}:Jack_3.5mm_HOOYA_PJ-307_Horizontal_EdgeMount'
 FP_LOGO = f'{LIBNAME}:SolderDemon_Logo'
 FP_OSC = 'Oscillator:Oscillator_DIP-8'
 FP_HDR = 'Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical'
-LOCAL_FP = ROOT / f'{LIBNAME}.pretty'
+LOCAL_FP = DESIGN / f'{LIBNAME}.pretty'
 
 
 def named(key, m):
@@ -69,7 +72,7 @@ k = d.custom('BUS_2x18', [(i, bus[i], 'passive') for i in range(1, 37, 2)],
 d.add('J1', k, 'SYSTEM BUS', {i: n if n in used else None for i, n in bus.items()}, (40, 90))
 
 # ---- U3: ATF22V10C sequencer. Pin names and directions come from the GALasm source -----------
-src = (ROOT / 'code' / 'pld' / 'audio_sequencer.pld').read_text(encoding='utf-8')
+src = (ROOT / 'code' / 'firmware' / 'pld' / 'audio_sequencer.pld').read_text(encoding='utf-8')
 gpins, kinds = gal.pins(src), gal.signals(src)
 GNET = {'CLK': 'LOGICCLK', 'RW': 'RWB', 'RESET': '~{RESET}'}
 LINKED = {'RDY', 'CAPTURE', 'BDIR'}      # outputs that leave the GAL; the rest only feed back
@@ -144,11 +147,11 @@ d.add('#FLG02', FLG, 'PWR_FLAG', {1: 'GND'}, (170, 230))
 
 d.note(f'${PAGE:04X} write: PSG register number (BC2 = A0 = 0).  ${PAGE + 1:04X} write: value for that register '
        f'(BC2 = 1).  Both repeat over ${PAGE:04X}-${PAGE + 0xFF:04X} (A1-A7 not decoded). Reads do nothing.', 20, 255, 2)
-d.note('U3 ATF22V10C-7PX: code/pld/audio_sequencer.pld (GALasm). Each write holds the CPU with RDY for about '
+d.note('U3 ATF22V10C-7PX: code/firmware/pld/audio_sequencer.pld (GALasm). Each write holds the CPU with RDY for about '
        '7 PSG clocks (~4 us); BDIR is high for 2 clocks (1.09 us). U3 drives RDY only during its own write.', 20, 261, 2)
 d.note('X1 1.8432 MHz: tone f = 1843200 / (16 * period).', 20, 267, 2)
 
-d.write(ROOT, [(LIBNAME, f'${{KIPRJMOD}}/{LIBNAME}.pretty')])
+d.write(DESIGN, [(LIBNAME, f'${{KIPRJMOD}}/{LIBNAME}.pretty')])
 
 
 def edge_jack():
@@ -183,7 +186,7 @@ fps = {}
 for p in d.parts + [dict(ref='LOGO1', fp=FP_LOGO, value='SolderDemon', nets={}, uuid=None)]:
     if p['ref'].startswith('#'): continue
     lib, name = p['fp'].split(':')
-    f = pcb.FootprintLoad(str(LOCAL_FP if lib == LIBNAME else g.LIB / 'footprints' / (lib + '.pretty')), name)
+    f = pcb.FootprintLoad(str(DESIGN / 'SolderDemonCaps.pretty' if lib == 'SolderDemonCaps' else LOCAL_FP if lib == LIBNAME else g.LIB / 'footprints' / (lib + '.pretty')), name)
     assert f, p['fp']
     f.SetFPID(pcb.LIB_ID(lib, name))
     f.SetReference(p['ref']); f.SetValue(p['value'])
@@ -236,13 +239,18 @@ j1.SetOrientationDegrees(0)
 j1.SetPosition(v(*J1_PIN1))
 assert pad('J1', 1) == J1_PIN1 and pad('J1', 2) == (3.235, 14.425) and pad('J1', 35) == (5.775, 57.605)
 assert j1.GetLayer() == pcb.F_Cu
-ref_at('J1', J1_PIN1[0], J1_PIN1[1] - 5.6)
+# Final board coordinates: J1 follows PIN 1 down the same centred column.
+J1_REF_FINAL = (10.225, 57.75)
+ref_at('J1', W - J1_REF_FINAL[1], J1_REF_FINAL[0])
 
 # J1 against the host's J5, signal by signal, from the host's own schematic.
-HOST_SCH = ROOT.parent / 'solderdemon_6502' / 'design' / 'kicad' / 'solderdemon_6502.kicad_sch'
-host_xml = ROOT / 'bus-reference.xml'
+HOST_SCH = ROOT.parent / 'solderdemon_6502' / 'design' / 'solderdemon_6502.kicad_sch'
+host_xml = DESIGN / 'bus-reference.xml'
 subprocess.run([CLI, 'sch', 'export', 'netlist', '--format', 'kicadxml', '-o', str(host_xml), str(HOST_SCH)],
                check=True, capture_output=True)
+netlist_tree = ET.parse(host_xml)
+netlist_tree.find("./design/source").text = HOST_SCH.name
+netlist_tree.write(host_xml, encoding="UTF-8", xml_declaration=True)
 host = {int(x.get('pin')): n.get('name') for n in ET.parse(host_xml).findall('./nets/net')
         for x in n.findall('node') if x.get('ref') == 'J5'}
 SAME = {'CLK': 'PHI2', 'R/~{W}': 'RWB', 'VCC': '+5V', 'NMI': '~{NMI}', 'IRQ': '~{IRQ}'}
@@ -250,15 +258,16 @@ assert sorted(host) == list(range(1, 37)), host
 assert all(SAME.get(host[i], host[i]) == bus[i] for i in host), \
     [(i, host[i], bus[i]) for i in host if SAME.get(host[i], host[i]) != bus[i]]
 
+# Preliminary placement in the host frame; the final m68k-style layout is applied after rotation.
 # The card stands in the busboard on its left edge, so the right edge is the top and the top and
 # bottom edges are its sides. It is as deep as the busboard (100 mm), so its sides are flush with
 # the busboard's, and the line out leaves through the top side (the pin 1 end, y = 0), the way a
 # PC card's connector leaves through its bracket. Columns from the bus edge: U3 over U2 beside J1
 # (U3 by the control and address rows, U2 by the data rows); the PSG, its outputs at the top next
 # to the jack and the mixer; the mixer resistors. The clock, pull-downs and logo fill the bottom.
-place('U3', 9.0, 12.5, 0)                                   # pin 1 top left, inputs face J1
-place('U2', 9.0, 47.5, 0)
-place('U1', 25.0, 12.5, 0)                                  # pin 1 top left: A, B and C at the top
+place('U3', 9.0, 14.5, 0)                                   # pin 1 top left, inputs face J1
+place('U2', 9.0, 49.5, 0)
+place('U1', 25.0, 14.5, 0)                                  # pin 1 top left: A, B and C at the top
 assert pad('U1', 1)[0] < pad('U1', 40)[0] and pad('U1', 1)[1] < pad('U1', 20)[1], 'U1 pin 1 top left'
 place('X1', 24.0, 76.0, 0)
 for ref in ('U1', 'U2', 'U3'):
@@ -268,13 +277,14 @@ l, t, r, bm = box('X1'); ref_at('X1', (l + r) / 2, (t + bm) / 2)
 
 
 def part(ref, x, y, rot=0, anchor='tl', label=None, size=.9):
-    """Place a small part; its reference goes 'above', 'below', 'left' or 'right' of the courtyard."""
+    """Place a small part; its reference goes beside or inside the courtyard."""
     l, t, r, bm = place(ref, x, y, rot, anchor)
     side = label or ('below' if rot in (0, 180) else 'right')
     if side == 'above': ref_at(ref, (l + r) / 2, t - .7, 0, size)
     elif side == 'below': ref_at(ref, (l + r) / 2, bm + .7, 0, size)
     elif side == 'left': ref_at(ref, l - .7, (t + bm) / 2, 90, size)
     elif side == 'east': ref_at(ref, r + 1.3, (t + bm) / 2, 0, size)
+    elif side == 'inside': ref_at(ref, (l + r) / 2, (t + bm) / 2, 0, size)
     elif side == 'none': ref_at(ref, (l + r) / 2, (t + bm) / 2, 0, size)
     else: ref_at(ref, r + .7, (t + bm) / 2, 90, size)
 
@@ -290,13 +300,13 @@ part('J3', 37.6, 1.2, 0, label='none', size=.01)            # L G R, pin 1 at th
 fps['J3'].Reference().SetVisible(False)
 part('C5', 44.8, 1.0, 0, label='left', size=.8)             # bulk
 
-part('C3', 20.85, 13.0, 90, label='below', size=.8)          # U3, in the gap to U1
-part('C2', 20.85, 48.0, 90, label='below', size=.8)          # U2
-part('C1', 45.4, 9.2, 0, label='east', size=.8)             # U1, by pin 40
+part('C3', 20.7, 13.0, 90, label='inside', size=.8)          # U3, in the gap to U1
+part('C2', 20.7, 48.0, 90, label='inside', size=.8)          # U2
+part('C1', 45.4, 9.0, 0, label='inside', size=.8)            # U1, by pin 40
 for i, ref in enumerate(('R5', 'R6', 'R7', 'R8', 'R9', 'R10', 'R11', 'R12', 'R13')):
     part(ref, 45.4, 13.4 + 3.3 * i, 0, label='east', size=.8)
 
-part('C4', 38.6, 76.0, 90, label='below', size=.8)         # X1
+part('C4', 38.4, 76.0, 90, label='inside', size=.8)         # X1
 for i, ref in enumerate(('R2', 'R1', 'R3', 'R4')):          # clock to U3 and U1, BDIR and CAPTURE pull-downs
     part(ref, 42.8 + 3.57 * i, 76.0, 90, label='below', size=.8)
 
@@ -356,8 +366,8 @@ arc((W - c, 0), (W - kc, kc), (W, c)); arc((W, H - c), (W - kc, H - kc), (W - c,
 arc((a, H), (k, H - k), (0, H - a)); arc((0, a), (k, k), (a, 0))
 
 text('LINE OUT', JACK_X, 12.0, .8, left=False)
-for k, ch in enumerate('LGR'):                             # beside each pin of J3
-    x_, y_ = pad('J3', k + 1); text(ch, x_ - 2.2, y_, .8, left=False)
+for k, ch in enumerate(('L', 'GND', 'R')):                             # beside each pin of J3
+    x_, y_ = pad('J3', k + 1); text(ch, 22.3, y_, .8, left=False)
 # as on the host's J5: the socket hides the square pad, so pin 1 is marked above it
 text('PIN 1', J1_PIN1[0], J1_PIN1[1] - 4.2, .8, left=False)
 tri = pcb.PCB_SHAPE(b, pcb.SHAPE_T_POLY)
@@ -383,6 +393,46 @@ for t in texts:                                             # a turned label rea
         c_ = t.GetBoundingBox().GetCenter()
         t.SetTextAngle(pcb.EDA_ANGLE(0, pcb.DEGREES_T))
         t.Move(c_ - t.GetBoundingBox().GetCenter())
+# Keep J1 vertical like PIN 1; the two labels read as one sequence with a small gap.
+fps['J1'].Reference().SetTextAngle(pcb.EDA_ANGLE(90, pcb.DEGREES_T))
+
+# Arrange the card like the m68k audio card, keeping the 6502 bus connector fixed.
+# Positions are courtyard top-left coordinates in the final, bus-down view.
+layout = mech.layout('6502')
+layout.update(J2=(-3.7, 11, 0), LOGO1=(17, 3, 0))
+for ref, (x, y, rotation) in layout.items():
+    l, t, r, bm = place(ref, x, y, rotation)
+    if ref.startswith('U') or ref == 'X1':
+        ref_at(ref, (l+r)/2, (t+bm)/2, 0, 1.0)
+    elif ref.startswith('R'):
+        ref_at(ref, (l+r)/2, (t+bm)/2, 90 if rotation == 90 else 0, .8)
+    elif ref in ('C1', 'C2', 'C3'):
+        ref_at(ref, (l+r)/2, t - .8, 0, .8)
+    elif ref.startswith('C'):
+        ref_at(ref, r + .9, (t+bm)/2, 90, .8)
+    elif ref == 'J2':
+        ref_at(ref, 10.5, 24.5, 0, .8)
+# Discard labels tied to the old locations; replace them next to the connectors.
+removed_labels = [item for item in b.GetDrawings() if isinstance(item, pcb.PCB_TEXT) and item.GetText() in ('LINE OUT', 'L', 'G', 'GND', 'R')]
+for item in removed_labels:
+    b.Remove(item)
+text('LINE OUT', 4, 24.5, .8, left=False)
+for k, ch in enumerate(('L', 'GND', 'R')):
+    x_, y_ = pad('J3', k + 1)
+    text(ch, 22.3, y_, .8, left=False)
+
+# Check final courtyards as well as the initial placement.
+bad = []
+items = [r for r in fps if r != 'LOGO1']
+for i, a in enumerate(items):
+    al, at, ar, ab = box(a)
+    if a not in ('J1', 'J2') and (al < .5 or at < .5 or ar > W-.5 or ab > H-.5):
+        bad.append(f'{a} off the board')
+    for c in items[i+1:]:
+        cl, ct, cr, cb = box(c)
+        if al < cr and cl < ar and at < cb and ct < ab:
+            bad.append(f'{a} overlaps {c}')
+assert not bad, bad
 
 # Title and notes in the new frame: the front title under the logo, the notes behind U1.
 lb = fps['LOGO1'].GetBoundingBox(False)
@@ -397,9 +447,12 @@ l, t, r, bm = box('U3')                                      # between U3's pad 
 text(f'Copyright ©{DATE[:4]} SolderDemon', (l + r) / 2, (t + bm) / 2, .9, pcb.B_SilkS, left=False)
 
 # No-connect pins get 'unconnected-(...)' nets in the schematic; copy nets and pin metadata onto the pads.
-netlist = ROOT / 'schematic.xml'
+netlist = DESIGN / 'schematic.xml'
 subprocess.run([CLI, 'sch', 'export', 'netlist', '--format', 'kicadxml', '-o', str(netlist),
-                str(ROOT / f'{NAME}.kicad_sch')], check=True, capture_output=True)
+                str(DESIGN / f'{NAME}.kicad_sch')], check=True, capture_output=True)
+netlist_tree = ET.parse(netlist)
+netlist_tree.find("./design/source").text = f'{NAME}.kicad_sch'
+netlist_tree.write(netlist, encoding="UTF-8", xml_declaration=True)
 for n in ET.parse(netlist).findall('./nets/net'):
     for node in n.findall('node'):
         f = fps.get(node.get('ref'))
@@ -412,6 +465,7 @@ for n in ET.parse(netlist).findall('./nets/net'):
         if node.get('pinfunction'): pd_.SetPinFunction(node.get('pinfunction'))
         if node.get('pintype'): pd_.SetPinType(node.get('pintype'))
 
-pcb.SaveBoard(str(ROOT / (NAME + '.kicad_pcb')), b)
-pcb.ExportSpecctraDSN(b, str(ROOT / 'routing.dsn'))
+removed_labels += mech.finish_labels(b, pcb)
+pcb.SaveBoard(str(DESIGN / (NAME + '.kicad_pcb')), b)
+pcb.ExportSpecctraDSN(b, str(DESIGN / 'routing.dsn'))
 print('Generated', len(d.parts), 'symbols;', len(nets), 'nets;', f'{W:g} x {H:g} mm')

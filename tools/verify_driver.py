@@ -1,4 +1,4 @@
-"""Run the ca65/ld65 build of code/demo on py65's 65C02 against the r1 card's register model.
+"""Run the ca65/ld65 build of code/software/demo on py65's 65C02 against the r1 card's register model.
 
     python tools/verify_driver.py
 
@@ -16,7 +16,7 @@ from py65.devices.mpu65c02 import MPU
 
 PAGE = 0xC100
 labels = {line.split()[2].lstrip('.'): int(line.split()[1], 16)
-          for line in (root / 'code/demo/demo.lbl').read_text().splitlines()}
+          for line in (root / 'code/software/demo/demo.lbl').read_text().splitlines()}
 
 
 class Card(list):
@@ -48,7 +48,7 @@ class Card(list):
 
 
 mem = Card(); cpu = MPU(memory=mem); mem.cpu = cpu
-binary = (root / 'code/demo/demo.bin').read_bytes(); mem[0x1000:0x1000 + len(binary)] = binary
+binary = (root / 'code/software/demo/demo.bin').read_bytes(); mem[0x1000:0x1000 + len(binary)] = binary
 
 
 def call(name, a=0, x=0, y=0, p=0x30):

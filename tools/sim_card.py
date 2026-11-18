@@ -3,7 +3,7 @@
     python tools/sim_card.py
 
 Every part is wired by the netlist the generator wrote, not by assumption: U3 is tools/gal.py
-fed with code/pld/audio_sequencer.jed, U2 is a 74HCT273, U1 a YM2149 register file that checks
+fed with code/firmware/pld/audio_sequencer.jed, U2 is a 74HCT273, U1 a YM2149 register file that checks
 its own bus timing. The CPU is a W65C02S bus model: address bits change one by one somewhere
 between tAH and tADS after PHI2 falls (so the decoder sees the glitches), write data appears
 up to tMDS after PHI2 rises and is driven until tDHW after it falls, read cycles put random bytes
@@ -37,10 +37,10 @@ YM_SETUP, YM_HOLD, YM_MIN, YM_MAX = 300.0, 80.0, 300.0, 10000.0
 DT = 0.5
 RDY_RISE = 80.0                          # 3k3 and the bus load: a released low RDY reads high this much later
 
-parts = {p['ref']: p for p in json.loads((ROOT / 'design.json').read_text())}
-src = (ROOT / 'code' / 'pld' / 'audio_sequencer.pld').read_text()
+parts = {p['ref']: p for p in json.loads((ROOT / 'design/design.json').read_text())}
+src = (ROOT / 'code' / 'firmware' / 'pld' / 'audio_sequencer.pld').read_text()
 gpin = gal.pins(src)
-FUSES = gal.jedec((ROOT / 'code' / 'pld' / 'audio_sequencer.jed').read_text())
+FUSES = gal.jedec((ROOT / 'code' / 'firmware' / 'pld' / 'audio_sequencer.jed').read_text())
 
 
 def net(ref, pin):

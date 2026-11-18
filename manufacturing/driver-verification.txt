@@ -1,0 +1,1 @@
+PASS: ca65/ld65 binary on py65 65C02 against the r1 register model; 3584 register/value pairs; A/X/Y/flag preservation; IRQs masked across each pair; register number masked; no reads of $C1xx; init, silence; chord 261.8 Hz / 330.1 Hz / 391.8 Hz at 1.8432 MHz.

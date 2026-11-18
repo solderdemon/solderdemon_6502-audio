@@ -1,0 +1,22 @@
+{
+  "platform": "6502",
+  "revision": "r1",
+  "layout_correction": "2026-11-12",
+  "date": "2026-11-12",
+  "size_mm": [
+    100.0,
+    72.0
+  ],
+  "socket_gap_mm": 4.11,
+  "ERC": "0 violations",
+  "DRC": "0 violations including warnings; parity and unconnected 0",
+  "r1_hardware": "Physical verification pending",
+  "J3": "optional DNP; 1=L 2=GND 3=R",
+  "inputs": {
+    "design/solderdemon_6502-audio.kicad_pcb": "111bfd0a7bd5bb9f0274c68c26a7862720cad736cb6dd07ddb7b00190a2224b9",
+    "design/solderdemon_6502-audio.kicad_sch": "4657a5a39188ac5d273782fdbfe82e90ab8f5a1a0117843e8fa80b0e6a05d4df",
+    "design/solderdemon_6502-audio.kicad_pro": "f9e6b0f4ab0d379a35d3658d16ebea35bf6a65af834a2950f3f73dfb142ee506",
+    "code/firmware/pld/audio_sequencer.pld": "41a84c7c4ad2b6f95e3223d6123392c37ed857be44647d35d34f99043caee8e5",
+    "code/firmware/pld/audio_sequencer.jed": "43845bcdd1426a8d7aec1e3dadd31d50035f74d4ce21aab39aa0246deb698844"
+  }
+}

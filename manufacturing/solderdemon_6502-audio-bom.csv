@@ -1,0 +1,31 @@
+﻿Reference,Value,Footprint,Quantity,Assembly notes
+J1,SYSTEM BUS,SolderDemonAudio:PinSocket_2x18_P2.54mm_Horizontal_EdgeMount,1,
+U3,ATF22V10C-7PX,Package_DIP:DIP-24_W7.62mm_Socket_LongPads,1,
+U2,74HCT273,Package_DIP:DIP-20_W7.62mm_Socket_LongPads,1,
+U1,YM2149F,Package_DIP:DIP-40_W15.24mm_Socket_LongPads,1,
+X1,1.8432MHz,Oscillator:Oscillator_DIP-8,1,
+R1,33,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R2,33,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R3,10k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R4,10k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R5,1k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R6,1k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R7,1k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R8,10k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R9,22k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R10,22k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R11,10k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+C6,10uF 16V,Capacitor_THT:CP_Radial_D6.3mm_P2.50mm,1,
+C7,10uF 16V,Capacitor_THT:CP_Radial_D6.3mm_P2.50mm,1,
+R12,100k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+R13,100k,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal,1,
+J2,PJ-307 LINE OUT,SolderDemonAudio:Jack_3.5mm_HOOYA_PJ-307_Horizontal_EdgeMount,1,
+J3,L / GND / R,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,1,Optional / DNP by default
+C1,100nF,SolderDemonCaps:C_Radial_5.08mm,1,
+C2,100nF,SolderDemonCaps:C_Radial_5.08mm,1,
+C3,100nF,SolderDemonCaps:C_Radial_5.08mm,1,
+C4,100nF,SolderDemonCaps:C_Radial_5.08mm,1,
+C5,47uF 16V,Capacitor_THT:CP_Radial_D6.3mm_P2.50mm,1,
+SOCKET_U1,"DIP-40 socket 15.24mm rows, low profile",Mechanical / fitted under U1,1,Use prototype-qualified type
+SOCKET_U2,"DIP-20 socket 7.62mm rows, low profile",Mechanical / fitted under U2,1,Use prototype-qualified type
+SOCKET_U3,"DIP-24 socket 7.62mm rows, low profile",Mechanical / fitted under U3,1,Use prototype-qualified type

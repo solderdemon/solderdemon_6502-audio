@@ -20,10 +20,10 @@ root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).parent))
 import gal
 
-HOST = root.parent / 'solderdemon_6502' / 'design' / 'kicad' / 'solderdemon_6502.kicad_pcb'
+HOST = root.parent / 'solderdemon_6502' / 'design' / 'solderdemon_6502.kicad_pcb'
 SAME = {'VCC': '+5V', 'CLK': 'PHI2', 'R/~{W}': 'RWB', 'IRQ': '~{IRQ}', 'NMI': '~{NMI}'}   # host net -> card net
-parts = json.loads((root / 'design.json').read_text())
-b = p.LoadBoard(str(root / 'solderdemon_6502-audio.kicad_pcb'))
+parts = json.loads((root / 'design/design.json').read_text())
+b = p.LoadBoard(str(root / 'design/solderdemon_6502-audio.kicad_pcb'))
 
 
 def netlist(path, ref=None):
@@ -35,7 +35,7 @@ def netlist(path, ref=None):
     return out
 
 
-sch = netlist(root / 'schematic.xml')
+sch = netlist(root / 'design/schematic.xml')
 errors = []
 for part in parts:
     if part['ref'].startswith('#'): continue
@@ -75,7 +75,7 @@ for a in f.Pads():
     assert (a.GetPosition().x - cx, a.GetPosition().y - cy) == (oy, h - ox), a.GetNumber()
 pin1 = next(a for a in f.Pads() if a.GetNumber() == '1').GetPosition()
 assert (p.ToMM(pin1.x - cx), p.ToMM(cy + h - pin1.y)) == (14.425, 5.775)
-bus = netlist(root / 'bus-reference.xml', 'J5')
+bus = netlist(root / 'design/bus-reference.xml', 'J5')
 for a in f.Pads():
     want = SAME.get(bus[('J5', a.GetNumber())], bus[('J5', a.GetNumber())])
     got = a.GetNetname().removeprefix('/')
@@ -84,9 +84,9 @@ for a in f.Pads():
     if got != want: errors.append(('BUS', a.GetNumber(), want, a.GetNetname()))
 
 # U3 from its fuses: every address, write and read, in and out of reset, PHI2 high and low.
-src = (root / 'code/pld/audio_sequencer.pld').read_text()
+src = (root / 'code/firmware/pld/audio_sequencer.pld').read_text()
 name = gal.pins(src); pin = {n: k for k, n in name.items()}
-g = gal.Gal22V10(gal.jedec((root / 'code/pld/audio_sequencer.jed').read_text()))
+g = gal.Gal22V10(gal.jedec((root / 'code/firmware/pld/audio_sequencer.jed').read_text()))
 selected = []
 for addr in range(0, 0x10000, 0x100):                     # A0-A7 do not reach U3
     for rw in (0, 1):
